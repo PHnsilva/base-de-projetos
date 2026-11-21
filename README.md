@@ -1,99 +1,28 @@
-# Resenhas de Artigos
+# Base de Projetos
 
-Repositório dedicado ao armazenamento e à organização de resenhas acadêmicas e técnicas sobre arquitetura de software, engenharia de software e temas relacionados.
+Acervo para planejar, documentar e iniciar projetos de software com o Codex. Use o escopo acordado no projeto de destino para escolher as referências, os documentos, as ferramentas e a forma de acompanhar o trabalho.
 
-## Estado do acervo
+| Procurando | Abra |
+| --- | --- |
+| Regras para o Codex e pontos de entrada | [AGENTS.md](AGENTS.md) |
+| Como escolher o que documentar | [Guia de início](docs/iniciar-projeto.md) |
+| Estruturas em branco | [Templates de projeto](templates/projeto/README.md) |
+| Exemplo completo de ponta a ponta | [Reserva de recursos](exemplos/reservas-de-recursos/README.md) |
+| Issues, Kanban e outras views | [Guia do GitHub Project](docs/github-project.md) |
+| Perfis, livros, resenhas externas e leituras | [Catálogo de referências](referencias/README.md) |
+| Comparar abordagens de frontend, backend e serviços | [Arquitetura](arquitetura/README.md) |
+| Escolher um tipo de diagrama | [Catálogo de diagramas](diagramas/README.md) |
+| Dez resenhas acadêmicas em Markdown e PDF | [Índice original das resenhas](REFERENCIAS.md) |
+| Exportação de documentação | [Ferramentas](tools/README.md) |
 
-As dez resenhas atuais estão finalizadas. O repositório permanece aberto a novas leituras e resenhas. Revisões e acréscimos devem preservar a autoria e identificar as fontes consultadas.
+## Usar em outro repositório
 
-## Objetivo
+No início da tarefa, passe ao Codex o escopo acordado, o repositório de destino e este pedido:
 
-Este repositório reúne resenhas de artigos, capítulos e textos técnicos da área de computação.
-O objetivo é manter um acervo consistente e fácil de navegar, com uma pasta por texto e os arquivos finais organizados por formato.
+> Consulte PHnsilva/base-de-projetos. Leia o AGENTS.md da base e o do destino. Use o GitHub Project de referência para entender as views e as issues. A partir do escopo informado, escolha os modelos pertinentes e escreva a documentação para o projeto de destino.
 
-## Organização
+Para tornar a consulta recorrente, inclua essa orientação no `AGENTS.md` do destino ou nas instruções globais locais do Codex. A consulta ao Project exige uma sessão com acesso. Para quem estiver sem acesso, o guia descreve as views e liga as issues públicas de exemplo. O Codex descobre instruções no projeto de trabalho e na configuração local. A consulta à base externa precisa ser indicada no pedido ou nessas instruções.
 
-- Cada texto resenhado possui uma pasta própria dentro de `resenhas/`.
-- O nome da pasta deve identificar o texto resenhado de forma clara.
-- Os arquivos da resenha seguem, de preferência, o padrão `resenha_<slug>.<ext>`.
-- O template-base para novas resenhas fica em `templates/TEMPLATE_RESENHAS.md`.
+## Manter a base
 
-## Estrutura
-
-```txt
-.
-├─ README.md
-├─ REFERENCIAS.md
-├─ templates/
-│  └─ TEMPLATE_RESENHAS.md
-└─ resenhas/
-   ├─ 1997-big-ball-of-mud/
-   │  ├─ resenha_big_ball_of_mud.md
-   │  └─ resenha_big_ball_of_mud.pdf
-   ├─ criteria-for-modularization/
-   │  ├─ criteria_for_modularization.md
-   │  └─ criteria_for_modularization.pdf
-   ├─ design-by-contract/
-   │  ├─ resenha_design_by_contract.md
-   │  └─ resenha_design_by_contract.pdf
-   ├─ facade/
-   │  ├─ resenha_facade.md
-   │  └─ resenha_facade.pdf
-   ├─ hexagonal-architecture/
-   │  ├─ resenha_hexagonal_architecture.md
-   │  └─ resenha_hexagonal_architecture.pdf
-   ├─ microservicos-martin-fowler/
-   │  ├─ resenha_microservicos.md
-   │  └─ resenha_microservicos.pdf
-   ├─ No-Silver-Bullet-Essence-and-Accidents-of-Software-Engineering/
-   │  ├─ resenha_no_silver_bullet.md
-   │  └─ resenha_no_silver_bullet.pdf
-   ├─ object-constraint-language-definitive-guide/
-   │  ├─ resenha_object_constraint_language.md
-   │  └─ resenha_object_constraint_language.pdf
-   ├─ resenha_mcp_landscape_security_threats_future_research/
-   │  ├─ resenha_mcp_landscape_security_threats_future_research.md
-   │  └─ resenha_mcp_landscape_security_threats_future_research.pdf
-   └─ software-architecture-a-roadmap/
-      ├─ resenha_software_architecture_roadmap.md
-      └─ resenha_software_architecture_roadmap.pdf
-```
-
-## Padrão das resenhas
-
-As resenhas seguem o modelo padronizado do projeto, inspirado no formato adotado nos PDFs do repositório.
-
-Cada resenha deve conter:
-
-1. **Título principal** no formato `Resenha: {Título do artigo}`
-2. **Subtítulo** com síntese do tema ou do enfoque do texto
-3. **Referência bibliográfica completa**
-4. **Introdução**
-5. **Síntese das ideias principais**, organizada em subtópicos numerados quando necessário
-6. **Aplicação prática imaginada**
-7. **Conclusão**
-
-Esse padrão ajuda a manter consistência visual e textual entre os arquivos em `.md` e `.pdf`, além de facilitar a leitura e a organização do repositório.
-
-## Consulta do acervo
-
-Consulte o [catálogo de referências](REFERENCIAS.md) para localizar as fontes originais, conceitos e cuidados de aplicação. Abra [resenhas/](resenhas/) para acessar os pares Markdown/PDF e use o [template](templates/TEMPLATE_RESENHAS.md) como referência. O repositório contém documentos, sem aplicação, dependências ou comando de build automatizado para os PDFs.
-
-## Como adicionar uma nova resenha
-
-1. Criar uma nova pasta dentro de `resenhas/`.
-2. Usar `templates/TEMPLATE_RESENHAS.md` como base e conferir autoria, edição, data, DOI ou URL da fonte original.
-3. Salvar a versão em Markdown.
-4. Gerar a versão final em PDF.
-5. Conferir nomes, links e legibilidade do PDF.
-6. Atualizar este README e `REFERENCIAS.md` com a nova entrada e abrir um pull request.
-
-## Observações
-
-- O repositório prioriza organização, legibilidade e padronização.
-- A estrutura foi pensada para facilitar versionamento e consulta futura.
-- Sempre que possível, mantenha os nomes de arquivos curtos, consistentes e sem ambiguidade.
-
-## Autoria e licença
-
-As referências bibliográficas dos textos resenhados estão em cada documento. Não há arquivo de licença no repositório. Os artigos citados mantêm seus próprios direitos e condições de uso.
+Catalogar cada item novo por finalidade e incluir um exemplo de uso ou uma condição de adoção. Ao adicionar uma resenha, use o [modelo de resenha](templates/TEMPLATE_RESENHAS.md), registre autoria, edição ou versão e fonte original, e atualize [REFERENCIAS.md](REFERENCIAS.md). Os textos e obras de terceiros mantêm suas condições de uso.
