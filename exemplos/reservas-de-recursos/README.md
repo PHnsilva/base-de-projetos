@@ -1,10 +1,9 @@
 # Reserva de recursos compartilhados
 
-Exemplo fictício de um laboratório comunitário que precisa controlar a reserva de equipamentos compartilhados. Ilustra a ligação de uma necessidade aos requisitos, casos de uso, diagramas, issues e testes.
+Caso fictício de um laboratório comunitário. Associados solicitam e acompanham seus pedidos. Responsáveis decidem reservas dos equipamentos sob sua responsabilidade.
 
-- [Especificação e rastreabilidade](especificacao.md)
-- [Diagramas de contexto e sequência](diagramas.md)
-- [ADR sobre confirmação sem sobreposição](adr-001-confirmacao.md)
-- [Issues de referência e quando usar cada view](../../docs/github-project.md)
+1. Leia a [especificação](especificacao.md) e acompanhe um requisito pela [matriz de rastreabilidade](especificacao.md#matriz-de-rastreabilidade).
+2. Consulte os [diagramas](diagramas.md) e o [ADR sobre concorrência](adr-001-confirmacao.md).
+3. Compare as [issues didáticas](../../docs/github-project.md#issues-didáticas) e execute os [testes de domínio](codigo/README.md).
 
-O exemplo usa horários em `America/Sao_Paulo` na interface, com armazenamento em UTC e intervalos no formato `[início, fim)`. Contas, equipamentos e dados são fictícios. O caso demonstra documentação. A execução e o aceite dos testes pertencem ao sistema de destino.
+O código implementa as regras puras de faixa, autorização e decisão. Frontend, API e persistência transacional são propostas de arquitetura. O plano de testes indica o que exigiria essas integrações.

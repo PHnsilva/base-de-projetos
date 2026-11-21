@@ -1,24 +1,23 @@
 # Nome do projeto
 
-Descreva o problema, o público e o resultado que o projeto entrega hoje.
+Descreva quem usa, que problema resolve e qual resultado entrega.
 
-## Escopo e estado
+## Estado, escopo e demonstração
 
-Informe a fase atual, capacidades verificadas, limites da entrega e decisões em aberto. Aponte a especificação quando existir.
+Informe fase, capacidades verificadas e fronteiras. Mostre a primeira jornada, uma demonstração ou a saída que o leitor pode reproduzir.
 
-## Começar
+## Arquitetura e tecnologias
 
-Liste versões e permissões necessárias. Explique como configurar o ambiente com valores fictícios, executar o sistema e realizar uma operação inicial. Inclua os comandos realmente testados e o resultado esperado.
+Identifique as unidades de execução, dados, integrações e responsabilidades. Aponte diagramas e principais decisões com suas razões.
 
-## Navegar pelo projeto
+## Instalar e executar
 
-| Preciso de | Caminho ou link |
-| --- | --- |
-| Requisitos e fluxos | Preencher |
-| Decisões e arquitetura | Preencher se houver |
-| Testes e diagnóstico | Preencher |
-| Backlog e fluxo de contribuição | Preencher se houver |
+Liste versões, serviços, variáveis de exemplo e permissões. Inclua os comandos verificados e o resultado esperado. Para sistemas com banco, explique inicialização e dados sintéticos.
 
-## Validar, publicar e operar
+## Verificar e operar
 
-Indique como executar os testes pertinentes. Se o público também opera o serviço, inclua configuração, diagnóstico e recuperação ou aponte o procedimento correspondente.
+Apresente teste rápido, testes de integração, implantação, diagnóstico e recuperação conforme o escopo. Informe o que requer componente externo ou ambiente de teste.
+
+## Navegação, contribuição e licença
+
+Aponte requisitos, decisões, testes, issues, fluxo de contribuição e condições de reutilização. Identifique autoria e dependências de terceiros quando se aplicarem.
