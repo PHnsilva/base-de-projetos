@@ -1,40 +1,32 @@
 ---
-name: Entrega rastreável
-about: Especificar uma entrega com escopo e aceite verificável
+name: Entrega ou documentação
+about: Especificar um comportamento ou artefato revisável
 title: ""
 labels: ""
 assignees: ""
 ---
 
-## Objetivo
+## Problema e resultado esperado
 
-Quem precisa da entrega e qual resultado deve aparecer?
+Quem precisa da entrega, em qual situação e como o resultado será percebido?
 
 ## Escopo e rastreabilidade
 
-Quais requisitos, casos de uso, riscos ou decisões originam o trabalho? Inclua links. Descreva o recorte desta entrega e as fronteiras que influenciam o aceite.
+Liste requisito, caso de uso, decisão ou artefato com links. Registre recorte e exclusões que mudam o critério de aceite.
 
-## Planejamento
+## Dependências e decisões
 
-Registre tipo, prioridade ou estimativa apenas quando a equipe usa esses campos. Liste as etapas que realmente ajudam a organizar o trabalho.
+Indique dados, ambiente, contrato, issues bloqueadoras e hipóteses pendentes.
 
-## Critérios de aceitação
+## Critérios de aceite
 
-- [ ] Descreva uma condição, uma ação e um resultado observável.
-- [ ] Inclua o comportamento esperado em falha ou situação alternativa, se aplicável.
+- [ ] Dado [estado], quando [ação], então [retorno e estado final].
+- [ ] Documente caminho alternativo ou condição de fronteira pertinente.
 
-## Dependências técnicas
+## Validação e evidência
 
-Quais entregas, acessos, contratos ou ambientes precisam estar disponíveis? Use links para as issues correspondentes.
+Informe teste, preparo, comando ou roteiro, retorno esperado e artefato de prova.
 
-## Insumos e decisões
+## Entrega e revisão
 
-Identifique fontes, exemplos, hipóteses e decisões que afetam a execução.
-
-## Validação e evidências
-
-Informe procedimento, dados de teste, resultado esperado e onde a evidência será registrada. Marque o que foi planejado, executado e verificado.
-
-## Entrega
-
-Descreva o artefato a revisar e o que permite encerrar a issue.
+Informe arquivos ou componentes a revisar e a condição para fechar.

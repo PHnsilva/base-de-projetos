@@ -1,19 +1,20 @@
-# Diagramas
+# Catálogo de diagramas
 
-Comece pela pergunta que o desenho precisa responder. Inclua título, escopo, público e referência ao documento explicativo. Abra o [exemplo com Mermaid](../exemplos/reservas-de-recursos/diagramas.md) para ver dois níveis de detalhe no mesmo projeto.
+Comece pela pergunta. Cada desenho precisa de público, fronteira e fonte verificável. Em trabalho pequeno, contexto e um fluxo podem ser suficientes.
 
-| Tipo | Pergunta | Quando documentar |
-| --- | --- | --- |
-| Contexto | Quem usa a solução, quais sistemas integram e onde estão as fronteiras? | Há dependências, públicos ou equipes com interpretações diferentes |
-| Contêineres no C4 | Quais aplicações e armazenamentos executam e como colaboram? | Há unidades de execução e implantação que precisam ser entendidas |
-| Componentes | Como se dividem as responsabilidades de uma unidade? | A decomposição influencia mudanças ou testes |
-| Fluxograma | Quais caminhos e responsáveis existem em um processo? | Há alternativas, devoluções ou passagens entre equipes |
-| Sequência | Em que ordem os participantes interagem? | Tempo, concorrência, chamadas externas ou falhas importam |
-| Estados | Quais transições são válidas e quem pode iniciá-las? | O domínio tem ciclo de vida com regras |
-| Entidade e relacionamento | Quais dados são persistidos e como se relacionam? | Integridade, cardinalidade, migração ou retenção precisam de acordo |
-| Implantação | O que roda em cada ambiente e por onde trafega? | A operação depende de isolamento, redes ou serviços distintos |
-| Wireframe anotado | O que o usuário vê e pode fazer em cada estado? | O fluxo ainda precisa de validação com usuários |
+| Pergunta | Tipo e exemplo preenchido |
+| --- | --- |
+| Quem participa e qual sistema tem a responsabilidade pela reserva? | [Contexto](../exemplos/reservas-de-recursos/diagramas.md#contexto) |
+| Que unidades de execução compõem a solução proposta? | [Contêineres](../exemplos/reservas-de-recursos/diagramas.md#contêineres) |
+| Onde ficam autorização, regra de domínio e persistência? | [Componentes do backend](../exemplos/reservas-de-recursos/diagramas.md#componentes-do-backend) |
+| Que objetivos pertencem a cada ator? A representação usa Mermaid. | [Casos de uso](../exemplos/reservas-de-recursos/diagramas.md#casos-de-uso) |
+| O UC-01 distingue entrada inválida, falha de gravação e sucesso. | [Fluxo de solicitação](../exemplos/reservas-de-recursos/diagramas.md#fluxo-de-solicitação) |
+| O UC-02 mostra a transação na confirmação e a preservação do estado nos erros. | [Sequência de decisão](../exemplos/reservas-de-recursos/diagramas.md#sequência-de-decisão) |
+| Quais transições a aplicação permite a partir de pendente? | [Estados da reserva](../exemplos/reservas-de-recursos/diagramas.md#estados-da-reserva) |
+| Como pedidos, equipamentos e autorização por equipamento se relacionam? | [Modelo de dados](../exemplos/reservas-de-recursos/diagramas.md#modelo-de-dados) |
+| Qual é a fronteira proposta entre cliente, aplicação e dados? | [Implantação](../exemplos/reservas-de-recursos/diagramas.md#implantação) |
+| Como uma descoberta vira artefato e evidência no repositório de destino? | [Processo de trabalho](../exemplos/reservas-de-recursos/diagramas.md#processo-de-trabalho) |
 
-Mantenha a fonte versionada perto do conteúdo que ela explica. Use Mermaid para diagramas que podem ser lidos no Markdown. Considere PlantUML ou Structurizr se o projeto já usa UML ou mantém um modelo C4 reutilizável. Confira a renderização, os textos e a coerência com os requisitos antes de publicar.
+Use o [modelo de diagrama](../templates/projeto/diagrama.md) para registrar escopo, propósito e verificação. Em projetos com hierarquia C4, contexto mostra atores e sistemas, contêineres mostram unidades de execução e componentes mostram responsabilidades dentro de um contêiner. Para UML formal, escolha uma notação ou ferramenta adequada ao público.
 
-[C4 Model](https://c4model.com/) · [Mermaid](https://mermaid.js.org/) · [PlantUML](https://plantuml.com/) · [Structurizr](https://structurizr.com/)
+Inclua fonte editável, explique abreviações, cheque a renderização e confira caminhos alternativos contra os requisitos. O código dos diagramas usa [Mermaid no GitHub](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams). Consulte também o [C4 Model](https://c4model.com/), [PlantUML](https://plantuml.com/) e [Structurizr](https://structurizr.com/).

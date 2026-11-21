@@ -19,3 +19,7 @@ O [perfil público do professor](https://github.com/joaopauloaramuni) reúne dis
 ## Resenhas e obras
 
 Nos READMEs e catálogos examinados, foram encontrados artigos, indicações comentadas, capítulos, materiais de aula, templates e exemplos técnicos. A busca nominal nas árvores de `projeto-de-software` e `laboratorio-de-desenvolvimento-de-software` não identificou uma coleção de resenhas de livros pelo nome dos arquivos. A existência de outros materiais não examinados permanece em aberto. Veja a [biblioteca](livros.md) para resenhas externas identificadas e propostas de leituras autorais. Veja o [mapa do acervo](../resenhas/README.md) para cruzar o material de aula com resenhas já existentes.
+
+## O que foi adaptado nesta revisão
+
+Do template de README foram aproveitados estado do projeto, navegação, demonstração, arquitetura, execução local, testes, contribuição e licença. Um acervo de documentação tem requisitos diferentes dos exemplos Java e web. Os exemplos de modelagem do professor orientaram o catálogo por pergunta, com fontes editáveis e links para casos preenchidos.
