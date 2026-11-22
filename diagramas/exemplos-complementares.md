@@ -54,11 +54,11 @@ Um laboratório fictício quer publicar um resumo semanal de utilização. Opera
 
 ```mermaid
 flowchart TD
-    C[("Decisões de reserva<br/>IDs, horários e estados")]
-    E[("Cadastro de equipamento<br/>ID e categoria")]
-    J["Transformação<br/>Junta por equipamento e filtra confirmações"]
-    A["Agregação<br/>Conta por semana e categoria"]
-    S[("Resumo semanal<br/>Categoria, semana e total")]
+    C[("Decisões de reserva · IDs, horários e estados")]
+    E[("Cadastro de equipamento · ID e categoria")]
+    J["Transformação · Junta por equipamento e filtra confirmações"]
+    A["Agregação · Conta por semana e categoria"]
+    S[("Resumo semanal · Categoria, semana e total")]
     C --> J
     E --> J
     J -->|"Descarta campos de pessoa"| A
@@ -106,8 +106,8 @@ A numeração expressa a ordem dentro da solicitação. Esta é uma representaç
 
 ```mermaid
 flowchart LR
-    U["Componente<br/>Aplicação de empréstimos"] -->|"requer"| P["Interface<br/>RepositorioEmprestimos"]
-    A["Componente<br/>Adaptador SQL"] -.->|"realiza"| P
+    U["Componente · Aplicação de empréstimos"] -->|"requer"| P["Interface · RepositorioEmprestimos"]
+    A["Componente · Adaptador SQL"] -.->|"realiza"| P
 ```
 
 A versão em [PlantUML](componentes.puml) mostra contrato e implementação. Para disponibilidade, rede ou multiplicidade de instâncias, use implantação.

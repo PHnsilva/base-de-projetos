@@ -62,7 +62,7 @@ Para executar as ferramentas do acervo, use **Node.js 22.2 ou superior**. A cons
 git clone https://github.com/PHnsilva/base-de-projetos.git
 cd base-de-projetos
 node tools/documentacao/validar.mjs
-node --test exemplos/reservas-de-recursos/codigo/regras.test.mjs
+node --test exemplos/reservas-de-recursos/codigo/regras.test.mjs tools/github-project/configurar.test.mjs
 node tools/documentacao/exportar.mjs exemplos/reservas-de-recursos reservas.zip
 ```
 

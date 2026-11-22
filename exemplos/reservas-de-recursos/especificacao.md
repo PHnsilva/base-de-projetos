@@ -10,15 +10,50 @@ O recorte inclui solicitação, decisão e histórico. A [visão](visao.md) regi
 
 ### UC-01 · Solicitar reserva
 
-O associado autenticado escolhe um recurso elegível, informa início e fim e envia. A aplicação valida a entrada e persiste o pendente. A interface exibe ID e estado somente após sucesso. Em erro de campo, mantém os valores digitados e indica a correção. Em falha de gravação, orienta a conferir o estado antes de reenviar.
+**Ator e objetivo** · Associado registra uma faixa para acompanhar o pedido pelo identificador.  
+**Gatilho** · Seleciona Solicitar reserva.  
+**Pré-condições** · Sessão válida e catálogo disponível.
+
+1. A interface mostra recursos elegíveis e campos de início e fim.
+2. O associado seleciona um recurso e envia a faixa em horário local.
+3. A API identifica o solicitante pela sessão, normaliza instantes e valida elegibilidade e faixa.
+4. A persistência grava um novo pedido pendente para a operação bem-sucedida.
+5. A resposta e a interface mostram identificador e estado persistido.
+
+**Alternativas.** Sem sessão, pede autenticação antes de criar. Recurso inelegível ou faixa inválida preserva campos e retorna erro sem gravar. Falha ou resposta incerta da gravação evita sucesso falso e orienta consultar o histórico antes de outro envio. Se a consulta não permitir identificar a tentativa com segurança, informa a incerteza. Reenvio idempotente depende de contrato específico.
+
+**Resultado** · Pendente verificável ou erro com o estado preservado. RF-01, RN-01, RNF-01 e CT-01/02/08.
 
 ### UC-02 · Decidir pedido
 
-O responsável seleciona confirmar ou recusar. A aplicação confere autorização e estado. Na confirmação, a verificação de faixa e a escrita formam uma operação atômica. Em conflito, devolve o motivo e mantém o pendente. Na recusa, exige motivo e grava a decisão. Tentativa sobre pedido decidido devolve o estado vigente.
+**Ator e objetivo** · Responsável decide um pedido do equipamento sob seu vínculo.  
+**Gatilho** · Seleciona confirmar ou recusar.  
+**Pré-condições** · Sessão válida, vínculo ativo e pedido pendente.
+
+1. A API verifica identidade, papel, vínculo e estado atual do pedido.
+2. O responsável envia a decisão e, na recusa, o motivo.
+3. A aplicação valida a decisão. Para confirmar, solicita verificação de faixa e escrita numa operação atômica.
+4. A persistência registra estado, autor e horário. Na recusa, registra também o motivo.
+5. A aplicação retorna a decisão persistida.
+
+**Alternativas.** Falta de papel ou vínculo retorna acesso negado. Motivo vazio retorna erro de entrada. Sobreposição mantém pendente e retorna conflito sem decisão final. Tentativa sobre pedido decidido devolve o estado vigente e preserva a trilha. Falha de armazenamento evita afirmar sucesso e permite conferir o estado após recuperação.
+
+**Resultado** · Uma decisão válida persiste ou o estado anterior é preservado. RF-02/03, RN-02/03/04 e CT-03/04/05/06/09.
 
 ### UC-03 · Consultar próprios pedidos
 
-A aplicação filtra pedidos pelo identificador autenticado. Uma conta sem pedidos recebe lista vazia. Sem sessão, pede autenticação.
+**Ator e objetivo** · Associado acompanha seus pedidos.  
+**Gatilho** · Abre Meus pedidos.  
+**Pré-condição** · Conta autenticada.
+
+1. A API obtém o identificador da sessão.
+2. Consulta o armazenamento filtrando pelo proprietário autenticado.
+3. Retorna identificador, recurso, faixa e estado atual.
+4. A interface mostra os pedidos e permite abrir seu detalhe.
+
+**Alternativas.** Sem sessão, pede autenticação. Sem registros, mostra lista vazia. Identificador de outro proprietário na entrada não muda o filtro da sessão. Falha de consulta mostra indisponibilidade, distinguindo-a da lista vazia.
+
+**Resultado** · Retorno restrito ao associado autenticado. RF-04, RAS-02 e CT-07.
 
 ## Requisitos e regras
 

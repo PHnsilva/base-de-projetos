@@ -60,6 +60,7 @@ function gh(endpoint, { method = "GET", data, paginated = false } = {}) {
 }
 
 const issueFieldsQuery = "query($id: ID!) { node(id:$id) { ... on ProjectV2Item { " +
+  'status: fieldValueByName(name:"Status") { ... on ProjectV2ItemFieldSingleSelectValue { optionId } } ' +
   'sprint: fieldValueByName(name:"Sprint") { ... on ProjectV2ItemFieldIterationValue { iterationId } } ' +
   'priority: fieldValueByName(name:"Prioridade") { ... on ProjectV2ItemFieldSingleSelectValue { optionId } } ' +
   'size: fieldValueByName(name:"Tamanho") { ... on ProjectV2ItemFieldSingleSelectValue { optionId } } ' +
@@ -95,6 +96,9 @@ export function applyPlan(plan, api = gh, log = console.log) {
   }));
 
   const fields = new Map(list(project + "/fields").map((field) => [field.name, field]));
+  const status = fields.get("Status");
+  const backlog = status?.options?.find((option) => (option.name?.raw ?? option.name) === "Backlog");
+  if (!backlog) throw new Error("O campo Status deve oferecer Backlog antes da aplicação.");
   const iterations = () => {
     const data = graph(iterationsQuery, { owner: plan.owner, number: plan.project });
     const config = data.user?.projectV2?.field?.configuration;
@@ -190,6 +194,9 @@ export function applyPlan(plan, api = gh, log = console.log) {
     ];
     const readCard = () => graph(issueFieldsQuery, { id: card.node_id }).node;
     const cardValues = readCard();
+    if (!cardValues?.status?.optionId) {
+      values.push(["Status", "status", "optionId", backlog.id]);
+    }
     const pending = values.filter(([, key, property, value]) => cardValues?.[key]?.[property] !== value);
     if (pending.length) {
       req(project + "/items/" + card.id, "PATCH", { fields: pending.map(([name, , , value]) => ({ id: fields.get(name).id, value })) });

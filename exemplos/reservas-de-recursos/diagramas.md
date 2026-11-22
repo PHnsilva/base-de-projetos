@@ -17,13 +17,13 @@ Cada exemplo começa com uma situação de projeto, o recorte relevante e a deci
 ```mermaid
 flowchart TD
     subgraph Pessoas["Pessoas do laboratório"]
-        A["Associado<br/>Precisa reservar um equipamento"]
-        R["Responsável pelo equipamento<br/>Decide pedidos da sua área"]
+        A["Associado · Precisa reservar um equipamento"]
+        R["Responsável pelo equipamento · Decide pedidos da sua área"]
     end
-    S["Sistema de reservas<br/>Controla pedidos, decisões e histórico"]
+    S["Sistema de reservas · Controla pedidos, decisões e histórico"]
     A -->|"Solicita por intervalo e consulta pedidos próprios"| S
     R -->|"Consulta a fila do equipamento, aprova ou recusa"| S
-    ID["Provedor de identidade institucional<br/>Sistema externo do cenário"]
+    ID["Provedor de identidade institucional · Sistema externo do cenário"]
     S -->|"Solicita autenticação e recebe identidade da conta"| ID
 ```
 
@@ -39,9 +39,9 @@ flowchart TD
     A["Associado"] -->|"Solicita e consulta"| W
     R["Responsável"] -->|"Decide pedidos"| W
     subgraph S["Sistema de reservas"]
-        W["Frontend web<br/>Formulários, fila e histórico"]
-        API["API de reservas<br/>Sessão, autorização e casos de uso"]
-        DB[("Banco relacional<br/>Equipamentos, pedidos e decisões")]
+        W["Frontend web · Formulários, fila e histórico"]
+        API["API de reservas · Sessão, autorização e casos de uso"]
+        DB[("Banco relacional · Equipamentos, pedidos e decisões")]
         W -->|"HTTPS · comandos e consultas JSON"| API
         API -->|"SQL · leitura e transações"| DB
     end
@@ -57,14 +57,14 @@ O contêiner web executa a interface. A API executa os casos de uso e escreve no
 ```mermaid
 flowchart TD
     subgraph API["Contêiner API de reservas"]
-        HTTP["Rota de decisão<br/>Recebe pedido, ator e ação"]
+        HTTP["Rota de decisão · Recebe pedido, ator e ação"]
         U["Caso de uso · decidir pedido"]
-        P["Política de acesso<br/>Papel e vínculo com equipamento"]
-        D["Domínio de reservas<br/>Estado, intervalo e recusa"]
+        P["Política de acesso · Papel e vínculo com equipamento"]
+        D["Domínio de reservas · Estado, intervalo e recusa"]
         RP["Porta · carregar e persistir decisão"]
-        AD["Adaptador SQL<br/>Implementa decisão atômica"]
+        AD["Adaptador SQL · Implementa decisão atômica"]
     end
-    DB[("Banco relacional<br/>Fora do contêiner API")]
+    DB[("Banco relacional · Fora do contêiner API")]
     HTTP --> U
     U -->|"Autoriza o ator para o recurso"| P
     U -->|"Valida a decisão conhecida"| D
@@ -234,12 +234,12 @@ erDiagram
 flowchart TD
     U["Navegador do associado ou responsável"]
     subgraph Publica["Serviço público de borda"]
-        E["Nginx · HTTPS<br/>Entrega web e encaminha API"]
+        E["Nginx · HTTPS · Entrega web e encaminha API"]
     end
     subgraph Privada["Rede privada de execução"]
-        A["Serviço API · contêiner<br/>Grava decisão e outbox na mesma transação"]
-        W["Serviço worker · contêiner<br/>Lê a outbox e registra entrega"]
-        DB[("PostgreSQL gerenciado<br/>Reservas, outbox e status de envio")]
+        A["Serviço API · contêiner · Grava decisão e outbox na mesma transação"]
+        W["Serviço worker · contêiner · Lê a outbox e registra entrega"]
+        DB[("PostgreSQL gerenciado · Reservas, outbox e status de envio")]
     end
     M["Provedor externo de e-mail"]
     U -->|"HTTPS 443"| E

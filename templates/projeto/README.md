@@ -3,7 +3,7 @@
 Escolha as seções conforme o escopo e a equipe. Remova instruções de preenchimento da versão final e use os termos do projeto.
 
 - [README de projeto](readme-projeto.md) para objetivo, uso e navegação.
-- [Especificação de projeto](especificacao.md) para visão, requisitos, casos de uso, arquitetura, interface, planejamento, testes e operação. Cada seção pode virar um arquivo quando precisar de revisão própria.
+- [Especificação de projeto](especificacao.md) para requisitos derivados dos casos de uso, RAS, arquitetura, interface, planejamento, testes e operação. Cada seção pode virar um arquivo quando precisar de revisão própria.
 - [ADR](adr.md) para uma decisão arquitetural com impacto.
 - [Exemplo aplicado](../../exemplos/reservas-de-recursos/README.md) para ver os documentos, diagramas e issues com conteúdo fictício.
 - [Ficha de diagrama](diagrama.md) para público, fronteira, fonte e revisão.

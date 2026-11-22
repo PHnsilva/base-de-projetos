@@ -2,18 +2,18 @@
 
 Use as seções que respondem a perguntas concretas. Divida o documento se públicos ou revisões forem diferentes.
 
-## Visão e escopo
+## Referências de produto
 
-Problema, atores, objetivo observável, entrega, limites, restrições de equipe, dados e ambiente. Liste decisões pendentes com impacto.
+Aponte o [documento de visão](visao.md), a revisão acordada e as perguntas em aberto que mudam o comportamento. Consulte os [casos de uso](casos-de-uso.md) derivados das conversas com usuários antes de detalhar os requisitos.
 
-## Requisitos e casos de uso
+## Requisitos derivados dos casos de uso
 
 | ID | Comportamento ou atributo de qualidade | Fonte | Aceite observável |
 | --- | --- | --- | --- |
 | RF-01 | Preencher comportamento | Acordo, caso de uso ou regra | Dado, quando e então |
 | RNF-01 | Preencher atributo e condição | Risco ou necessidade acordada | Medida, método ou limite verificado |
 
-Para cada caso de uso necessário, registre ID, objetivo do ator, pré-condição, gatilho, fluxo principal, alternativas e resultado. Ligue os passos críticos a requisitos.
+Relacione cada requisito ao caso de uso, à regra, à restrição ou ao risco de origem. Inclua critério de verificação e mantenha os fluxos detalhados no documento de casos de uso. Histórias e cenários refinam as fatias de entrega conforme o contexto.
 
 ## Requisitos arquiteturalmente significativos (RAS)
 

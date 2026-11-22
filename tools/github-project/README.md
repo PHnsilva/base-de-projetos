@@ -16,7 +16,7 @@ Para aplicar, use uma sessão do GitHub CLI do proprietário, com acesso de escr
 node tools/github-project/configurar.mjs --inicio 2027-01-11 --aplicar
 ```
 
-Combine uma data inicial antes de aplicar. A ferramenta verifica o proprietário, confirma que as 12 issues levam a label `exemplo`, reaproveita campos e milestones compatíveis e confirma os valores dos cartões após as escritas. Uma repetição com a mesma data verifica o estado e preenche as lacunas. A aplicação termina ao encontrar incompatibilidade. Operações já aceitas pelo GitHub podem ser retomadas com a mesma data. Para registrar autoria de trabalho, use assignees com pessoas reais quando o dono for acordado.
+Combine uma data inicial antes de aplicar. A ferramenta verifica o proprietário, confirma que as 12 issues levam a label `exemplo`, reaproveita campos e milestones compatíveis e confirma os valores dos cartões após as escritas. Cartões sem Status recebem Backlog. O andamento já preenchido é preservado. O campo Status deve existir com a opção Backlog antes da aplicação. Uma repetição com a mesma data verifica o estado e preenche as lacunas. A aplicação termina ao encontrar incompatibilidade. Operações já aceitas pelo GitHub podem ser retomadas com a mesma data. Para registrar autoria de trabalho, use assignees com pessoas reais quando o dono for acordado.
 
 ## Verificação local
 

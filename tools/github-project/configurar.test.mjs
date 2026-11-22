@@ -9,11 +9,15 @@ const project = "users/PHnsilva/projectsV2/13";
 const repo = "repos/PHnsilva/base-de-projetos";
 
 function mockGitHub(login = "PHnsilva") {
-  const fields = [], milestones = [], cards = [], writes = [];
+  const fields = [{ id: 1, name: "Status", data_type: "single_select", options: [
+    { id: "backlog", name: "Backlog", color: "GREEN" },
+    { id: "review", name: "In review", color: "PURPLE" },
+  ] }], milestones = [], cards = [], writes = [];
   const issueData = new Map(seed.items.map(({ issue }) => [issue, {
     number: issue, id: 10000 + issue, type: null, milestone: null, labels: [{ name: "exemplo" }], links: [],
   }]));
   const aliases = {
+    Status: ["status", "optionId"],
     Sprint: ["sprint", "iterationId"], Prioridade: ["priority", "optionId"],
     Tamanho: ["size", "optionId"], Funcionalidade: ["feature", "optionId"], Peso: ["weight", "number"],
     "Início planejado": ["start", "date"], "Entrega planejada": ["end", "date"],
@@ -88,7 +92,7 @@ function mockGitHub(login = "PHnsilva") {
     }
     return issue;
   }
-  return { api, writes, issueData, cards, milestones };
+  return { api, writes, issueData, cards, milestones, fields };
 }
 
 test("o plano tem 4 sprints, 12 issues e 16 bloqueios ordenados", () => {
@@ -119,5 +123,38 @@ test("a configuração preenche dados nativos e é idempotente", () => {
 test("uma conta diferente é recusada antes de qualquer escrita", () => {
   const service = mockGitHub("conta-diferente");
   assert.throws(() => applyPlan(plan, service.api), /conta proprietária/);
+  assert.equal(service.writes.length, 0);
+});
+
+test("o cartão recebe Status inicial e preserva andamento já informado", () => {
+  const service = mockGitHub();
+  applyPlan(plan, service.api, () => {});
+  assert.ok(service.cards.every((card) => card.values.status.optionId === "backlog"));
+  service.cards[0].values.status.optionId = "review";
+  applyPlan(plan, service.api, () => {});
+  assert.equal(service.cards[0].values.status.optionId, "review");
+});
+
+test("falha parcial pode ser retomada sem duplicar cartões ou bloqueios", () => {
+  const service = mockGitHub();
+  let interrupted = false;
+  const unstable = (endpoint, options = {}) => {
+    if (!interrupted && options.method === "PATCH" && endpoint.includes("/items/")) {
+      interrupted = true;
+      throw new Error("Falha de rede simulada");
+    }
+    return service.api(endpoint, options);
+  };
+  assert.throws(() => applyPlan(plan, unstable, () => {}), /Falha de rede/);
+  applyPlan(plan, service.api, () => {});
+  assert.equal(service.cards.length, 12);
+  assert.equal(service.milestones.length, 2);
+  assert.equal([...service.issueData.values()].reduce((n, issue) => n + issue.links.length, 0), 16);
+});
+
+test("Status ausente é detectado antes de criar campos ou marcos", () => {
+  const service = mockGitHub();
+  service.fields.length = 0;
+  assert.throws(() => applyPlan(plan, service.api, () => {}), /Status deve oferecer Backlog/);
   assert.equal(service.writes.length, 0);
 });

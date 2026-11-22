@@ -1,13 +1,39 @@
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join, relative, resolve, sep } from "node:path";
+import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { crc32 } from "node:zlib";
 
 const mermaidBlock = /^ {0,3}(\x60{3,}|~{3,})mermaid[ \t]*\r?\n([\s\S]*?)^ {0,3}\1[ \t]*\r?$/gm;
 const maxZipSize = 0xffffffff;
 const utf8Names = 0x0800;
 const dosDate = 33;
+
+const assetExtension = /\.(?:svg|png|jpe?g|gif|webp|puml|mmd)$/i;
+
+function collectAssets(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory() && !entry.name.startsWith(".") && entry.name !== "node_modules") {
+      return collectAssets(path);
+    }
+    return entry.isFile() && assetExtension.test(entry.name) ? [path] : [];
+  });
+}
+
+function checkImagePaths(file, source) {
+  const text = readFileSync(file, "utf8");
+  for (const [, angle, plain] of text.matchAll(/!\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))[^)]*\)/g)) {
+    const url = angle ?? plain;
+    if (/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(url)) continue;
+    const target = resolve(dirname(file), decodeURI(url.split(/[?#]/, 1)[0]));
+    const path = relative(source, target);
+    if (isAbsolute(path) || path.split(/[\\/]/).includes("..") || !assetExtension.test(target)) {
+      throw new Error("Imagem fora do pacote ou formato sem suporte: " + url);
+    }
+    readFileSync(target);
+  }
+}
 
 function collectMarkdown(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -95,6 +121,7 @@ function exportDocs(source, output, exportPdf) {
   }
 
   for (const file of files) {
+    checkImagePaths(file, source);
     const name = relative(source, file).split(sep).join("/");
     const stem = name.replace(/\.md$/i, "");
     const content = readFileSync(file);
@@ -108,6 +135,10 @@ function exportDocs(source, output, exportPdf) {
     }
 
     if (exportPdf) add(stem + ".pdf", renderPdf(file));
+  }
+
+  for (const file of collectAssets(source)) {
+    add(relative(source, file).split(sep).join("/"), readFileSync(file));
   }
 
   writeFileSync(output, makeZip(entries), { flag: "wx" });
