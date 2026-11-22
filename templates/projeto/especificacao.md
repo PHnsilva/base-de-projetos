@@ -15,6 +15,14 @@ Problema, atores, objetivo observável, entrega, limites, restrições de equipe
 
 Para cada caso de uso necessário, registre ID, objetivo do ator, pré-condição, gatilho, fluxo principal, alternativas e resultado. Ligue os passos críticos a requisitos.
 
+## Requisitos arquiteturalmente significativos (RAS)
+
+Relacione apenas requisitos que condicionam decisões de arquitetura. Para cada um, registre requisito original, condição ou estímulo, resposta observável, teste e decisão afetada.
+
+| ID | Requisito de origem e cenário | Resposta verificável | Decisão ou risco |
+| --- | --- | --- | --- |
+| RAS-01 | RF ou RNF pertinente em uma condição de risco | Resultado e medida esperados | Fronteira, dado, integração ou implantação |
+
 ## Arquitetura, integrações e dados
 
 Delimite responsabilidades, componentes externos, contratos, dados sensíveis e falhas. Use um diagrama quando ele ajudar a explicar fronteiras ou ordem dos eventos. Registre alternativas e decisões em ADRs quando as consequências justificarem histórico.

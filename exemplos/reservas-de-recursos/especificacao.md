@@ -1,8 +1,24 @@
 # Especificação de reservas
 
+O [documento de visão](visao.md) concentra objetivo, escopo, fronteiras e hipóteses. Use a especificação para comportamento e requisitos.
+
 ## Visão e limites
 
-O laboratório administra pedidos de reserva por intervalo. Associados autenticados enviam pedidos e consultam os próprios. Responsáveis avaliam pedidos de equipamentos sob sua responsabilidade. Cadastro administrativo, sincronização de agenda e notificações ficam para depois do MVP.
+O recorte inclui solicitação, decisão e histórico. A [visão](visao.md) registra o contexto, os limites do MVP e as hipóteses. A [matriz de acesso](perfis-de-acesso.md) detalha quem realiza cada ação.
+
+## Casos de uso
+
+### UC-01 · Solicitar reserva
+
+O associado autenticado escolhe um recurso elegível, informa início e fim e envia. A aplicação valida a entrada e persiste o pendente. A interface exibe ID e estado somente após sucesso. Em erro de campo, mantém os valores digitados e indica a correção. Em falha de gravação, orienta a conferir o estado antes de reenviar.
+
+### UC-02 · Decidir pedido
+
+O responsável seleciona confirmar ou recusar. A aplicação confere autorização e estado. Na confirmação, a verificação de faixa e a escrita formam uma operação atômica. Em conflito, devolve o motivo e mantém o pendente. Na recusa, exige motivo e grava a decisão. Tentativa sobre pedido decidido devolve o estado vigente.
+
+### UC-03 · Consultar próprios pedidos
+
+A aplicação filtra pedidos pelo identificador autenticado. Uma conta sem pedidos recebe lista vazia. Sem sessão, pede autenticação.
 
 ## Requisitos e regras
 
@@ -19,19 +35,15 @@ O laboratório administra pedidos de reserva por intervalo. Associados autentica
 - **RN-03** A aplicação confere papel, vínculo com o recurso e estado pendente. A recusa exige motivo. Conflito mantém o pedido pendente.
 - **RN-04** Confirmações e recusas bem-sucedidas registram autor e horário. Nova tentativa sobre pedido decidido preserva a decisão anterior.
 
-## Casos de uso
+## Requisitos arquiteturalmente significativos (RAS)
 
-### UC-01 · Solicitar reserva
+Os RAS são os requisitos que condicionam decisões caras de modificar, como a origem da autorização ou a forma de persistir. Cada item aponta para o requisito original e explicita como verificar a resposta.
 
-O associado autenticado escolhe um recurso elegível, informa início e fim e envia. A aplicação valida a entrada e persiste o pendente. A interface exibe ID e estado somente após sucesso. Em erro de campo, mantém os valores digitados e indica a correção. Em falha de gravação, orienta a conferir o estado antes de reenviar.
-
-### UC-02 · Decidir pedido
-
-O responsável seleciona confirmar ou recusar. A aplicação confere autorização e estado. Na confirmação, a verificação de faixa e a escrita formam uma operação atômica. Em conflito, devolve o motivo e mantém o pendente. Na recusa, exige motivo e grava a decisão. Tentativa sobre pedido decidido devolve o estado vigente.
-
-### UC-03 · Consultar próprios pedidos
-
-A aplicação filtra pedidos pelo identificador autenticado. Uma conta sem pedidos recebe lista vazia. Sem sessão, pede autenticação.
+| RAS | Origem e cenário | Resposta verificável | Decisão influenciada |
+| --- | --- | --- | --- |
+| RAS-01 · Consistência | RF-03, UC-02. Dois responsáveis confirmam reservas sobrepostas do mesmo recurso simultaneamente | Uma confirmação persistida. A outra retorna conflito e mantém o pedido pendente | Verificação e escrita atômicas no armazenamento, conforme CT-04 e o [ADR](adr-001-confirmacao.md) |
+| RAS-02 · Autorização | RF-02 e RF-04. Conta sem vínculo tenta decidir e dois associados consultam seus próprios históricos | Tentativa indevida não altera estado. Cada histórico contém só os pedidos da sessão | Autorização na API, consulta por proprietário e vínculo por recurso, conforme CT-05 e CT-07 |
+| RAS-03 · Recuperação | RNF-01 e RF-01. A criação perde a confirmação de gravação | Interface evita afirmar sucesso e orienta conferência. Após recuperação, o estado real pode ser consultado | Contrato explícito entre interface, API e persistência, conforme CT-08 |
 
 ## Arquitetura e operação
 
@@ -44,7 +56,7 @@ Proposta com frontend web, um único backend modular e armazenamento relacional.
 | RF-01 | UC-01 | CT-01, CT-02, CT-08 | [#5](https://github.com/PHnsilva/base-de-projetos/issues/5) |
 | RF-02 | UC-02 | CT-03, CT-05, CT-09 | [#3 · Documentação da decisão](https://github.com/PHnsilva/base-de-projetos/issues/3) |
 | RF-03 | UC-02 | CT-04, CT-06 | [#4](https://github.com/PHnsilva/base-de-projetos/issues/4) |
-| RF-04 | UC-03 | CT-07 | Fora da amostra de entregas |
+| RF-04 | UC-03 | CT-07 | [#8](https://github.com/PHnsilva/base-de-projetos/issues/8) |
 | RNF-01 | UC-01 e UC-02 | CT-05, CT-08, CT-09 | [#3](https://github.com/PHnsilva/base-de-projetos/issues/3) |
 
 A [#2](https://github.com/PHnsilva/base-de-projetos/issues/2) investiga integração de agenda fora do MVP.

@@ -1,26 +1,32 @@
-# Iniciar ou revisar um projeto
+# Iniciar um projeto de software
 
-Comece pelo problema, pelo público e pela entrega acordada. Leia o que já existe antes de propor arquivos novos. Decida com base no tamanho da equipe, nos riscos e no custo de manter a documentação atualizada.
+Comece ouvindo quem usa, opera ou decide sobre o processo. Forme um entendimento comum do problema, escolha a primeira entrega e revise documentos à medida que as dúvidas mudarem.
 
-| Quando aparece no escopo | Artefato que costuma ajudar |
+## Do problema ao primeiro incremento
+
+1. **Descoberta e visão.** Entenda processo atual, atores, problema, objetivos, resultado, restrições e hipótese de valor. Registre visão, escopo e fronteira do MVP no [documento de visão](../templates/projeto/visao.md).
+2. **Casos de uso.** Converse com usuários para identificar objetivos, gatilhos, pré-condições, caminho principal e alternativas. Veja o [modelo de caso de uso](../templates/projeto/casos-de-uso.md).
+3. **Requisitos e RAS.** Derive requisitos funcionais e não funcionais dos casos de uso, regras, restrições e riscos identificados. Dê ID, origem, medida e aceite. Destaque os RAS que mudam a arquitetura. Use a [especificação](../templates/projeto/especificacao.md).
+4. **Histórias e cenários.** Fatie o comportamento em resultados para o usuário e descreva exemplos de sucesso, falha e fronteira. As histórias também podem ser esboçadas na descoberta e refinadas junto com casos de uso e requisitos. Use [histórias e cenários](../templates/projeto/historias-e-cenarios.md).
+5. **Wireframes e perfis de acesso.** Valide a jornada, estados da interface e como pessoas com papéis distintos atuam sobre recursos. Registre no [modelo de interface e acesso](../templates/projeto/interface-e-acesso.md).
+6. **Desenho e decisão.** Prototipe riscos decisivos, compare alternativas, escolha [diagramas por escopo](../diagramas/README.md) e registre decisões em [ADR](../templates/projeto/adr.md).
+7. **Backlog e entrega.** Ordene dependências, escolha sprint ou objetivo de entrega e verifique o incremento com testes, revisão e demonstração. Use o [guia do Project](github-project.md).
+8. **Publicação e aprendizado.** Prepare observação e recuperação. Use feedback para revisar recorte, requisitos, decisões e próximas entregas.
+
+As etapas podem voltar e se sobrepor. Para equipes que adotam Scrum, o refinamento é contínuo e Review e Retrospectiva apoiam inspeção e adaptação. [Manifesto Ágil](https://agilemanifesto.org/iso/ptbr/principles.html) · [Scrum Guide](https://scrumguides.org/scrum-guide.html)
+
+## Onde registrar cada informação
+
+| Preciso registrar | Documento adequado |
 | --- | --- |
-| Todo início com instalação ou operação própria | README com objetivo, comandos verificados e limites |
-| Divergência sobre objetivos, público ou fronteira do MVP | Visão e escopo |
-| Comportamento de usuários, fluxos alternativos ou regras de negócio | Requisitos numerados e casos de uso |
-| Dependências externas, ambientes ou fronteiras de responsabilidade | Documento de arquitetura e diagrama de contexto |
-| Ordem dos passos, transferência de responsabilidade ou concorrência | Fluxograma, sequência ou diagrama de estados, conforme a pergunta |
-| Decisão técnica de impacto duradouro | ADR com contexto, opções, decisão, consequências e gatilho de revisão |
-| Entregas com dependências e validação por pessoas diferentes | Issues com aceite, dependências e Project quando útil |
-| Falhas relevantes, mudanças em dados, permissões ou operação | Plano de testes, matriz de acesso, contrato, runbook ou procedimento de recuperação |
-| Alinhamento de navegação ou estados da interface | Wireframes anotados e cenários de erro, carregamento e confirmação |
-| Distribuição para leitura offline | Pacote gerado com fontes e artefatos versionáveis |
+| Problema, objetivo, visão do produto, escopo e limite do MVP | Documento de visão |
+| O que os atores fazem e em que condições | Casos de uso, regras e casos alternativos |
+| Comportamento, restrições de qualidade e evidência de aceite | Especificação de requisitos e RAS |
+| Valor de uma fatia de trabalho e exemplos verificáveis | Histórias de usuário, cenários e critérios na issue |
+| Acesso por papel, vínculo ou propriedade | Matriz de perfis de acesso |
+| Decisões sobre telas, estados e navegação | Wireframes e roteiro de avaliação |
+| Estrutura, integração e decisões de alto impacto | Diagramas, contratos e ADR |
+| Descoberta de informações sobre o repositório e primeiro uso | README com apresentação, tecnologia, execução, testes, autoria e licença |
+| Passos completos de instalação, publicação, diagnóstico ou reversão | Guia de execução, implantação ou runbook conforme o público |
 
-## Aplicar
-
-1. Identifique o que precisa ser decidido, explicado, implementado ou verificado nesta fase.
-2. Use o menor conjunto de artefatos suficiente. Em trabalho pequeno, reúna visão, uso e validação no README. Separe arquivos quando público, ciclo de revisão ou tamanho justificar.
-3. Escreva a partir das evidências do destino. Marque decisões, pendências e limites com clareza. Use identificadores estáveis quando forem úteis para ligar caso de uso, requisito, issue e teste.
-4. Separe entregas que possam ser verificadas. Use o [guia de issues e views](github-project.md) se houver trabalho para acompanhar.
-5. Valide pelo caminho normal de quem vai usar a entrega. Registre comando ou procedimento, cenário, resultado e pendências.
-
-Consulte o [índice dos modelos](../templates/projeto/README.md), o [exemplo aplicado](../exemplos/reservas-de-recursos/README.md) e o [catálogo de referências](../referencias/README.md).
+O README apresenta o projeto e aponta para as fontes de detalhe. A [visão de reservas](../exemplos/reservas-de-recursos/visao.md) e o [README do exemplo](../exemplos/reservas-de-recursos/README.md) mostram as duas finalidades.
