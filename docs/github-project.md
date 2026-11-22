@@ -4,29 +4,31 @@ O quadro [Base de Projetos · Acervo e evolução](https://github.com/users/PHns
 
 ## Camadas do backlog
 
-As sprints e prioridades são didáticas. A tabela define o plano e as relações de precedência sem datas inventadas. As issues carregam os mesmos dados no título e no corpo.
+Sprint é a janela de trabalho. Milestone representa a entrega maior. O caso fictício tem duas entregas e quatro sprints, com dias relativos a uma data inicial escolhida pelo responsável pelo quadro.
 
-| Sprint | Marco | Resultado verificável |
+| Sprint | Objetivo da janela | Milestone |
 | --- | --- | --- |
-| S1 | Descoberta e desenho | Recorte, RAS, protótipo e contrato discutidos |
-| S2 | Jornada principal | Solicitação e histórico integrados. A regra de concorrência demonstrada |
-| S3 | Piloto do MVP | Regressão, documentação de decisão e recuperação revisadas |
-| S4 | Evolução | Evidência para decidir sobre agenda, ciclo de vida e notificação |
+| S1 | Descoberta e desenho | MVP de reservas |
+| S2 | Jornada principal | MVP de reservas |
+| S3 | Piloto do MVP | MVP de reservas |
+| S4 | Evolução | Evolução de reservas |
 
-| Sprint | Issue | Tipo | Porte / peso | Prioridade | Depende de |
-| --- | --- | --- | --- | --- | --- |
-| S1 | [#10](https://github.com/PHnsilva/base-de-projetos/issues/10) Delimitar o MVP e validar os requisitos que afetam a arquitetura | Descoberta | M / 3 | P0 | — |
-| S1 | [#9](https://github.com/PHnsilva/base-de-projetos/issues/9) Validar o protótipo da solicitação e a recuperação dos erros | Experiência | M / 3 | P1 | [#10](https://github.com/PHnsilva/base-de-projetos/issues/10) |
-| S1 | [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) Definir as fronteiras entre interface, casos de uso e persistência | Decisão técnica | P / 2 | P0 | [#10](https://github.com/PHnsilva/base-de-projetos/issues/10) |
-| S2 | [#5](https://github.com/PHnsilva/base-de-projetos/issues/5) Solicitar reserva e receber o identificador do pedido | Funcionalidade | M / 3 | P0 | [#9](https://github.com/PHnsilva/base-de-projetos/issues/9), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
-| S2 | [#4](https://github.com/PHnsilva/base-de-projetos/issues/4) Impedir duas confirmações sobrepostas do mesmo equipamento | Defeito | L / 5 | P0 | [#5](https://github.com/PHnsilva/base-de-projetos/issues/5), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
-| S2 | [#8](https://github.com/PHnsilva/base-de-projetos/issues/8) Entregar o histórico com isolamento entre associados | Funcionalidade | M / 3 | P1 | [#5](https://github.com/PHnsilva/base-de-projetos/issues/5), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
-| S3 | [#3](https://github.com/PHnsilva/base-de-projetos/issues/3) Documentar decisões e falhas do fluxo de aprovação | Documentação | P / 2 | P1 | [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
-| S3 | [#12](https://github.com/PHnsilva/base-de-projetos/issues/12) Preparar a regressão integrada de decisão e isolamento | Validação | M / 3 | P0 | [#4](https://github.com/PHnsilva/base-de-projetos/issues/4), [#8](https://github.com/PHnsilva/base-de-projetos/issues/8), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
-| S3 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) Ensaiar publicação e recuperação do piloto de reservas | Operação | M / 3 | P0 | [#12](https://github.com/PHnsilva/base-de-projetos/issues/12) |
-| S4 | [#2](https://github.com/PHnsilva/base-de-projetos/issues/2) Decidir quando integrar uma agenda externa | Investigação | M / 3 | P2 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) |
-| S4 | [#13](https://github.com/PHnsilva/base-de-projetos/issues/13) Especificar expiração e cancelamento sem alterar o estado do MVP | Evolução | M / 3 | P2 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) |
-| S4 | [#14](https://github.com/PHnsilva/base-de-projetos/issues/14) Validar entrega assíncrona do e-mail de decisão | Experimento | L / 5 | P2 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) |
+| Sprint | Issue | Tipo nativo previsto | Funcionalidade | Tamanho / peso | Prioridade | Dias na sprint | Bloqueada por |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| S1 | [#10](https://github.com/PHnsilva/base-de-projetos/issues/10) | Task | Planejamento | M / 3 | Alta | 1–3 | — |
+| S1 | [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) | Task | Decisão | P / 2 | Alta | 4–6 | [#10](https://github.com/PHnsilva/base-de-projetos/issues/10) |
+| S1 | [#9](https://github.com/PHnsilva/base-de-projetos/issues/9) | Task | Solicitação | M / 3 | Média | 4–7 | [#10](https://github.com/PHnsilva/base-de-projetos/issues/10) |
+| S2 | [#5](https://github.com/PHnsilva/base-de-projetos/issues/5) | Feature | Solicitação | M / 3 | Alta | 1–3 | [#9](https://github.com/PHnsilva/base-de-projetos/issues/9), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
+| S2 | [#4](https://github.com/PHnsilva/base-de-projetos/issues/4) | Bug | Decisão | L / 5 | Alta | 4–7 | [#5](https://github.com/PHnsilva/base-de-projetos/issues/5), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
+| S2 | [#8](https://github.com/PHnsilva/base-de-projetos/issues/8) | Feature | Histórico | M / 3 | Média | 4–7 | [#5](https://github.com/PHnsilva/base-de-projetos/issues/5), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
+| S3 | [#3](https://github.com/PHnsilva/base-de-projetos/issues/3) | Task | Decisão | P / 2 | Média | 1–4 | [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
+| S3 | [#12](https://github.com/PHnsilva/base-de-projetos/issues/12) | Task | Operação | M / 3 | Alta | 1–4 | [#4](https://github.com/PHnsilva/base-de-projetos/issues/4), [#8](https://github.com/PHnsilva/base-de-projetos/issues/8), [#11](https://github.com/PHnsilva/base-de-projetos/issues/11) |
+| S3 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) | Task | Operação | M / 3 | Alta | 5–7 | [#12](https://github.com/PHnsilva/base-de-projetos/issues/12) |
+| S4 | [#2](https://github.com/PHnsilva/base-de-projetos/issues/2) | Task | Agenda | M / 3 | Baixa | 1–4 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) |
+| S4 | [#13](https://github.com/PHnsilva/base-de-projetos/issues/13) | Task | Ciclo de vida | M / 3 | Baixa | 3–6 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) |
+| S4 | [#14](https://github.com/PHnsilva/base-de-projetos/issues/14) | Task | Notificações | L / 5 | Baixa | 1–7 | [#15](https://github.com/PHnsilva/base-de-projetos/issues/15) |
+
+A [configuração do exemplo](../tools/github-project/reservas.json) contém a ordem, as cores e a janela de cada item. As issues explicam a natureza do trabalho, os critérios e as evidências correspondentes.
 
 ```mermaid
 flowchart TD
@@ -47,32 +49,39 @@ flowchart TD
 
 O mapa destaca o caminho do piloto. Documentação e preparação de testes podem começar antes das implementações. A seta indica dependência para validar o resultado, não que uma pessoa precisa aguardar para iniciar toda a issue.
 
-## Três views para o mesmo quadro
+## Abas do Project
 
-| View | Configuração proposta | Decisão que facilita |
+| Ordem | Aba | Separação principal | O que precisa aparecer |
+| --- | --- | --- | --- |
+| 1 | Kanban por sprints | Colunas por **Status** e faixas horizontais por **Sprint** | Cartões com Tipo, Prioridade, Tamanho e Funcionalidade. Filtro de itens abertos |
+| 2 | Sprints | Tabela agrupada por **Sprint** | Status, Tipo, Prioridade, Tamanho, Peso, datas, marco e responsável quando atribuído |
+| 3 | Roadmap | Linha do tempo por **Início planejado** e **Entrega planejada** | Janelas do MVP e da evolução. Use esta aba quando as datas estiverem preenchidas e o cronograma servir para coordenação |
+| 4 | Por funcionalidade | Tabela agrupada por **Funcionalidade** | Sprint, Status, Tipo e Prioridade para encontrar pendências na mesma jornada |
+
+A iteração aparece como cabeçalho de cada faixa no Kanban. É possível ver simultaneamente, por exemplo, tarefas de S1 em Backlog e Ready sem trocar de aba. A tabela Sprints é para comparar a carga das janelas. Por funcionalidade permite encontrar, numa mesma seção, a prototipação e a implementação da Solicitação mesmo em sprints distintas.
+
+Use filtros para exemplos, defeitos e responsáveis sem ocupar abas separadas. Em **Backlog**, mantenha a entrada sem limite de coluna. Use limite de WIP em **In progress** se a equipe tiver um acordo. [Agrupamento e cartões do GitHub](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-board-layout)
+
+## Campos e cores
+
+| Campo | Onde aparece | Valores do exemplo |
 | --- | --- | --- |
-| Kanban | Quadro por Status. Use Sprint como filtro quando precisar isolar uma janela | Acompanhar o trabalho em andamento e distinguir bloqueio de acúmulo |
-| Sprints | Tabela agrupada por Sprint, com prioridade, peso, status e marco | Ver quanto cabe em cada incremento e conferir a sequência de validação |
-| Por funcionalidade | Tabela agrupada por capacidade, com Sprint, tipo e status | Encontrar o que falta para Solicitação, Decisão, Histórico ou Operação |
+| Tipo | Tipo nativo da issue, exibido no cartão | Task para descoberta, documentação e validação. Feature para comportamento novo. Bug para regressão |
+| Sprint | Iteração do Project, usada nas faixas e na tabela | S1 a S4, com sete dias cada |
+| Prioridade | Seleção nativa do Project, visível no cartão | Alta em vermelho, Média em amarelo, Baixa em cinza |
+| Tamanho | Seleção nativa visível no cartão | P em verde, M em amarelo, L em roxo |
+| Peso | Campo numérico, visível na tabela Sprints | P com 2, M com 3 e L com 5 nesta amostra |
+| Funcionalidade | Seleção nativa, usada para cartões e agrupamento | Solicitação em azul, Decisão em roxo, Histórico em verde, Operação em laranja, entre outras |
+| Início e entrega planejados | Campos de data | Datas calculadas dentro da sprint a partir de um início escolhido |
+| Milestone | Campo da issue e da tabela | MVP de reservas ou Evolução de reservas |
+| Dependências | Relação nativa **Blocked by** no painel da issue | A dependência liga duas issues da Base. Exemplo de verificação: #4 depende de #5 e #11 |
+| Responsável | Assignees da issue quando houver dono acordado | Os exemplos registram papéis esperados para a revisão |
 
-O tipo de trabalho e a origem didática são filtros aplicáveis às três views. Use `label:exemplo` para o caso fictício. Use `-label:exemplo` para manutenção quando houver itens nesse recorte. Uma view de cronograma vale quando existem datas a revisar. Itens atribuídos e defeitos podem ser recortes da tabela ou do Kanban.
+As cores do tipo nativo vêm das opções da conta. "Natureza" no corpo explica o trabalho em mais detalhe sem criar onze tipos. Aplique cores aos campos selecionáveis em vez de repetir categorias nos títulos. [Tipos de issue no GitHub](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/managing-issue-types)
 
-No Kanban, deixe **Backlog** sem limite para representar demanda candidata. Um limite de WIP pode ajudar em **In progress** quando a equipe define o número. O GitHub destaca a ultrapassagem do limite sem impedir novos cartões. [Limites por coluna](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-board-layout) · [Filtros](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/filtering-projects)
+## Aplicação e verificação
 
-## Campos e relações no GitHub
-
-| Dado | Onde fica quando configurado | Convenção deste caso |
-| --- | --- | --- |
-| Tipo | Labels no repositório pessoal e campo de seleção no Project se a equipe precisar agrupar por tipo | Funcionalidade, Descoberta, Experiência, Decisão técnica, Defeito, Documentação, Validação, Operação, Investigação, Evolução ou Experimento |
-| Sprint | Campo de iteração no Project | S1 a S4 com datas acordadas antes de popular cronograma |
-| Marco | Milestone do repositório | Quatro resultados descritos na tabela de sprints |
-| Porte | Campo de seleção no Project | P, M e L |
-| Peso | Campo numérico no Project | P vale 1–2, M vale 3, L vale 5 nesta amostra |
-| Prioridade | Campo de seleção no Project | P0 bloqueia o objetivo da sprint, P1 sustenta o incremento, P2 vale refinar para evolução |
-| Capacidade | Campo de seleção no Project | Solicitação, Decisão, Histórico e Operação. Itens transversais podem ter uma categoria própria |
-| Dependência | Relação nativa **Blocked by** entre issues | Use os números da tabela. Uma relação indica precedência real para aceitar a entrega |
-
-A tabela e os corpos das issues registram o planejamento disponível publicamente. A aplicação de campos, milestones, relações nativas, filtros e limite de coluna requer configuração no quadro e repositório. Use relações de bloqueio quando um resultado precisa existir para validar outro. Um link de contexto continua suficiente para referências sem bloqueio.
+A [ferramenta do Project](../tools/github-project/README.md) calcula as sprints e grava campos, cartões, tipos, milestones e dependências quando executada com acesso à conta. O [roteiro das abas](../tools/github-project/README.md#ajustar-as-abas-existentes) detalha os agrupamentos e a verificação visual no quadro.
 
 ## Templates no GitHub
 
