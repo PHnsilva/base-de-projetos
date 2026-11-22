@@ -1,10 +1,12 @@
 # Project da Base de Projetos
 
-O quadro [Base de Projetos · Acervo e evolução](https://github.com/users/PHnsilva/projects/13) acompanha a manutenção do acervo e serve para estudar um backlog fictício. Use [as issues didáticas](https://github.com/PHnsilva/base-de-projetos/issues?q=is%3Aissue%20label%3Aexemplo) e [as issues de manutenção](https://github.com/PHnsilva/base-de-projetos/issues?q=is%3Aissue%20-label%3Aexemplo) como listas públicas. A presença das issues no quadro e a configuração persistida das views dependem do acesso ao Project.
+O quadro [Base de Projetos · Acervo e evolução](https://github.com/users/PHnsilva/projects/13) acompanha a manutenção do acervo e serve para estudar um backlog fictício. Use [as issues didáticas](https://github.com/PHnsilva/base-de-projetos/issues?q=is%3Aissue%20label%3Aexemplo) e [as issues de manutenção](https://github.com/PHnsilva/base-de-projetos/issues?q=is%3Aissue%20-label%3Aexemplo) como listas públicas. O Project é privado e contém as 12 issues didáticas, com campos e relações nativas preenchidos, além do PR de evolução do acervo. Sua consulta depende do acesso à conta.
 
 ## Camadas do backlog
 
 Sprint é a janela de trabalho. Milestone representa a entrega maior. O caso fictício tem duas entregas e quatro sprints, com dias relativos a uma data inicial escolhida pelo responsável pelo quadro.
+
+O calendário aplicado usa S1 de **23 a 29/11/2026**, S2 de **30/11 a 06/12**, S3 de **07 a 13/12** e S4 de **14 a 20/12**. Essas datas são didáticas. Elas não representam compromisso de implementação do produto. As issues permanecem em Backlog enquanto seus resultados não forem demonstrados.
 
 | Sprint | Objetivo da janela | Milestone |
 | --- | --- | --- |
@@ -54,23 +56,39 @@ O mapa destaca o caminho do piloto. Documentação e preparação de testes pode
 | Ordem | Aba | Separação principal | O que precisa aparecer |
 | --- | --- | --- | --- |
 | 1 | Kanban por sprints | Colunas por **Status** e faixas horizontais por **Sprint** | Cartões com Tipo, Prioridade, Tamanho e Funcionalidade. Filtro de itens abertos |
-| 2 | Sprints | Tabela agrupada por **Sprint** | Status, Tipo, Prioridade, Tamanho, Peso, datas, marco e responsável quando atribuído |
+| 2 | Sprints e carga | Tabela agrupada por **Sprint** | Status, Tipo, Prioridade, Tamanho, Peso, datas, marco e responsável quando atribuído. Soma do peso por janela |
 | 3 | Roadmap | Linha do tempo por **Início planejado** e **Entrega planejada** | Janelas do MVP e da evolução. Use esta aba quando as datas estiverem preenchidas e o cronograma servir para coordenação |
 | 4 | Por funcionalidade | Tabela agrupada por **Funcionalidade** | Sprint, Status, Tipo e Prioridade para encontrar pendências na mesma jornada |
+| 5 | Dependências | Tabela de issues bloqueadas, agrupada por **Sprint** | Prioridade, funcionalidade e marco. Abra a issue para consultar os bloqueadores nativos |
+| 6 | Evolução do acervo | Tabela de manutenção real, agrupada por **Status** | PRs e issues do próprio acervo, responsável e labels, sem as estimativas fictícias de reservas |
 
-A iteração aparece como cabeçalho de cada faixa no Kanban. É possível ver simultaneamente, por exemplo, tarefas de S1 em Backlog e Ready sem trocar de aba. A tabela Sprints é para comparar a carga das janelas. Por funcionalidade permite encontrar, numa mesma seção, a prototipação e a implementação da Solicitação mesmo em sprints distintas.
+A iteração aparece como cabeçalho de cada faixa no Kanban. É possível ver simultaneamente tarefas de uma sprint em estados diferentes sem trocar de aba. A tabela Sprints e carga compara as janelas. Por funcionalidade encontra a prototipação e a implementação da Solicitação mesmo em sprints distintas. Dependências destaca o que exige uma entrega anterior. Evolução do acervo mantém a revisão real visível sem misturá-la ao calendário do produto fictício.
+
+As cinco views didáticas usam `is:open label:exemplo`. Dependências acrescenta `is:blocked`; o filtro foi conferido contra as relações nativas e retorna 11 issues. O recorte complementar `is:open label:exemplo -is:blocked` retorna apenas #10 neste estado inicial. Conforme os bloqueadores forem concluídos, o conjunto muda. Evolução do acervo usa `is:open -label:exemplo` e inclui a [issue #17](https://github.com/PHnsilva/base-de-projetos/issues/17) e o [PR #16](https://github.com/PHnsilva/base-de-projetos/pull/16) em In review, atribuídos ao mantenedor. O aceite da issue depende da revisão do PR.
 
 Use filtros para exemplos, defeitos e responsáveis sem ocupar abas separadas. Em **Backlog**, mantenha a entrada sem limite de coluna. Use limite de WIP em **In progress** se a equipe tiver um acordo. [Agrupamento e cartões do GitHub](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-board-layout)
+
+## Referências para a organização
+
+As seis views atendem perguntas diferentes: estado, carga, prazo, jornada, impedimento e manutenção. Ao adaptar esta base a outro projeto, mantenha somente as perguntas que exigem acompanhamento recorrente. Um filtro ocasional não precisa se tornar uma aba.
+
+| Referência pública | Prática observada | Adaptação nesta base |
+| --- | --- | --- |
+| [Boas práticas de Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/best-practices-for-projects) | Views por perspectiva; iterações, campos e soma de estimativas; informações mantidas nas issues e PRs | Sprints e carga, campos nativos e relações sem uma segunda lista manual de bloqueios |
+| [GitHub Public Roadmap](https://github.com/orgs/github/projects/4247) e [seu guia](https://github.com/github/roadmap) | Fase de lançamento, área do produto e expectativa de entrega; views para públicos ou fases diferentes | Roadmap e Por funcionalidade respondem a perguntas distintas do Kanban. As datas fictícias são identificadas |
+| [Processo de desenvolvimento publicado do VS Code](https://github.com/microsoft/vscode/wiki/Development-Process) | Roadmap de temas, planejamento de iterações e critérios de conclusão com validação | Objetivo por sprint, marco de entrega e evidência ligada ao aceite; a duração e os ritos são adaptados ao recorte de reservas |
+
+Essas referências fundamentam a organização, sem impor seu volume de trabalho, duração de ciclo ou arquitetura ao projeto de destino. A [documentação de dependências](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-issue-dependencies) explica o vínculo nativo e os indicadores de bloqueio.
 
 ## Campos e cores
 
 | Campo | Onde aparece | Valores do exemplo |
 | --- | --- | --- |
-| Tipo | Tipo nativo da issue, exibido no cartão | Task para descoberta, documentação e validação. Feature para comportamento novo. Bug para regressão |
+| Tipo | Tipo nativo da issue, exibido no cartão como Type | Task para descoberta, documentação e validação. Feature para comportamento novo. Bug para regressão |
 | Sprint | Iteração do Project, usada nas faixas e na tabela | S1 a S4, com sete dias cada |
 | Prioridade | Seleção nativa do Project, visível no cartão | Alta em vermelho, Média em amarelo, Baixa em cinza |
 | Tamanho | Seleção nativa visível no cartão | P em verde, M em amarelo, L em roxo |
-| Peso | Campo numérico, visível na tabela Sprints | P com 2, M com 3 e L com 5 nesta amostra |
+| Peso | Campo numérico, visível na tabela Sprints e carga | P com 2, M com 3 e L com 5 nesta amostra |
 | Funcionalidade | Seleção nativa, usada para cartões e agrupamento | Solicitação em azul, Decisão em roxo, Histórico em verde, Operação em laranja, entre outras |
 | Início e entrega planejados | Campos de data | Datas calculadas dentro da sprint a partir de um início escolhido |
 | Milestone | Campo da issue e da tabela | MVP de reservas ou Evolução de reservas |

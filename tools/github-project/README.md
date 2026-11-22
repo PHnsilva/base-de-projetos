@@ -20,6 +20,8 @@ Combine uma data inicial antes de aplicar. A ferramenta verifica o proprietário
 
 ## Verificação local
 
+O plano de 23/11/2026 foi aplicado ao Project 13 e seus valores foram confirmados pela API autenticada. As seis views foram configuradas no quadro. As datas são do exemplo fictício, sem compromisso de entrega real. Consulte o [registro de validação](../../docs/revisao-do-acervo.md).
+
 ```sh
 node --test tools/github-project/configurar.test.mjs
 ```
@@ -29,9 +31,11 @@ O teste simula a API, verifica a precedência, valida os valores enviados e conf
 ## Ajustar as abas existentes
 
 1. Na primeira aba do quadro, salve o nome **Kanban por sprints**. Em **View**, escolha **Column field → Status** e **Group by → Sprint**. Deixe filtro de itens abertos. Selecione Tipo, Prioridade, Tamanho e Funcionalidade para aparecer nos cartões e salve. Confira que o cabeçalho de S1 aparece atravessando as colunas.
-2. Aproveite uma tabela existente para **Sprints**. Agrupe por Sprint. Exiba início, entrega, Tipo, Prioridade, Tamanho, Peso, Status e milestone. Use ordem por começo da janela.
+2. Aproveite uma tabela existente para **Sprints e carga**. Agrupe por Sprint. Exiba início, entrega, Tipo, Prioridade, Tamanho, Peso, Status e milestone. Ordene por início planejado e some o Peso de cada janela.
 3. Use a aba de cronograma para **Roadmap** quando os cartões tiverem datas. Em configuração de datas, selecione **Início planejado** e **Entrega planejada**. Confirme que #10, #5 e #15 aparecem nas janelas esperadas.
 4. Aproveite outra tabela para **Por funcionalidade**. Agrupe por Funcionalidade e exiba Sprint, Tipo, Status e Prioridade. Solicitação deve mostrar #9 e #5 em sprints distintas. Defeitos e itens de uma pessoa podem ser acessados por filtros.
-5. Inspecione as quatro abas, confirme a ordem e revise as antigas com o mantenedor. No Kanban, confira que Backlog não mostra limite de coluna; em #4, confira o tipo Bug, o milestone do MVP e os dois **Blocked by**.
+5. Adicione **Dependências** como tabela agrupada por Sprint, com filtro `is:open label:exemplo is:blocked`. Confira que #10 está fora do recorte e #4 conserva os dois **Blocked by**. A relação na issue é a fonte do bloqueio.
+6. Use **Evolução do acervo** para o trabalho real, com filtro `is:open -label:exemplo` e agrupamento por Status. O PR #16 em In review é um exemplo. As outras views ficam restritas a `label:exemplo`.
+7. Inspecione as seis abas e mantenha apenas visões complementares. No Kanban, confira que Backlog não mostra limite de coluna; em #4, confira o tipo Bug e o milestone do MVP. Os [exemplos públicos e critérios de organização](../../docs/github-project.md#referências-para-a-organização) ajudam a adaptar a seleção de views a outro escopo.
 
 O script não renomeia nem remove abas existentes. [Quadro do GitHub](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-board-layout) · [Roadmap](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-roadmap-layout)

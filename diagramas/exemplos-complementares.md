@@ -71,12 +71,7 @@ Registre período, critério de contagem, tratamento de categorias ausentes e um
 **Mini-escopo.** O código de empréstimos ficou grande o suficiente para a equipe discutir dependências. A regra é que a borda web e o adaptador escrevem contra contratos, enquanto o domínio independe da infraestrutura.
 
 
-```mermaid
-flowchart LR
-    W["emprestimo.web"] -.->|"importa"| U["emprestimo.aplicacao"]
-    U -.->|"importa"| D["emprestimo.dominio"]
-    P["emprestimo.persistencia"] -.->|"implementa contrato em"| U
-```
+![Pacotes UML e suas dependências: web e persistência dependem da aplicação, que depende do domínio](pacotes.svg)
 
 A seta pontilhada aponta para o pacote usado. Essa visão organiza o código e ajuda a revisar imports. A fonte em [PlantUML](pacotes.puml) usa a notação de pacote.
 
@@ -104,10 +99,6 @@ A numeração expressa a ordem dentro da solicitação. Esta é uma representaç
 **Mini-escopo.** A equipe do empréstimo quer trocar o armazenamento de testes pelo adaptador SQL e conferir se o contrato continua suficiente. A visão mostra a interface exigida e quem a implementa.
 
 
-```mermaid
-flowchart LR
-    U["Componente · Aplicação de empréstimos"] -->|"requer"| P["Interface · RepositorioEmprestimos"]
-    A["Componente · Adaptador SQL"] -.->|"realiza"| P
-```
+![Componentes UML: a aplicação requer RepositorioEmprestimos, realizado pelo adaptador SQL](componentes.svg)
 
 A versão em [PlantUML](componentes.puml) mostra contrato e implementação. Para disponibilidade, rede ou multiplicidade de instâncias, use implantação.

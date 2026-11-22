@@ -17,3 +17,9 @@ Use o escopo aprovado e as instruções do projeto de destino como ponto de part
 5. Informe o que foi validado, o método e o que ainda depende de ambiente ou dados. Leia os efeitos e pré-requisitos antes de executar ferramentas. Escrita, execução com efeito externo e publicação seguem o escopo autorizado no destino.
 
 Se o quadro exigir permissões adicionais, use o guia e os links públicos das issues.
+
+## Autoria e revisão deste acervo
+
+As alterações são propostas em branch e PR focados. Use a identidade Git do mantenedor, Pedro Henrique Silva Vargas (`PHnsilva`), ao executar o trabalho solicitado por ele. Confira autor e committer antes de enviar commits; não acrescente identidade de bot como autor ou coautor.
+
+Atualize o PR com a mudança e a evidência verificável. Comentários e reviews em nome do mantenedor exigem pedido explícito. Aguarde sua avaliação antes de fazer merge. A revisão automática do Codex está desativada neste repositório.
