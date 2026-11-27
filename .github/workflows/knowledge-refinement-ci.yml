@@ -1,0 +1,50 @@
+name: Knowledge refinement checks
+on:
+  pull_request:
+    paths:
+      - 'tools/knowledge/**'
+      - 'referencias/catalogo/**'
+      - 'docs/knowledge-refinement*'
+      - '.github/workflows/*knowledge*'
+permissions:
+  contents: read
+jobs:
+  test:
+    if: github.event.repository.visibility == 'public'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6, verified 2026-11-27
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6, verified 2026-11-27
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - run: node --test tools/knowledge/*.test.mjs exemplos/reservas-de-recursos/codigo/*.test.mjs
+      - run: node tools/knowledge/validate.mjs
+      - run: node tools/documentacao/validar.mjs
+      - run: git diff --check
+  smoke:
+    name: Read-only source smoke check
+    if: >-
+      github.event.repository.visibility == 'public' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Check public sources without publishing
+        continue-on-error: true # Source outages are reported in logs, not treated as offline test success.
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: timeout --signal=TERM 120s node tools/knowledge/run.mjs
