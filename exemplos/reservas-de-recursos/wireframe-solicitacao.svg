@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" role="img" aria-labelledby="titulo descricao">
+<title id="titulo">Wireframe da tela Solicitar reserva</title>
+<desc id="descricao">Formulário à esquerda e exemplos de erro de campo e resposta incerta à direita.</desc>
+<rect width="860" height="460" fill="#f5f6f8"/>
+<g font-family="Arial,sans-serif" fill="#172033">
+<text x="32" y="33" font-size="17" font-weight="bold">Solicitação · versão de baixa fidelidade</text>
+<rect x="32" y="55" width="455" height="365" rx="10" fill="#fff" stroke="#606d82"/>
+<path d="M32 105h455" stroke="#9da8ba"/>
+<text x="54" y="86" font-size="15" font-weight="bold">Laboratório</text>
+<text x="365" y="86" font-size="14">Meus pedidos</text>
+<text x="54" y="146" font-size="23" font-weight="bold">Solicitar reserva</text>
+<text x="54" y="187" font-size="14">Equipamento</text>
+<rect x="54" y="197" width="409" height="42" rx="5" fill="#f7f8fa" stroke="#64748b"/>
+<text x="65" y="223" font-size="14">Selecionar equipamento</text>
+<text x="54" y="271" font-size="14">Início</text><text x="264" y="271" font-size="14">Fim</text>
+<rect x="54" y="281" width="197" height="40" rx="5" fill="#f7f8fa" stroke="#64748b"/>
+<rect x="264" y="281" width="199" height="40" rx="5" fill="#f7f8fa" stroke="#64748b"/>
+<text x="65" y="306" font-size="13">Data e hora</text><text x="276" y="306" font-size="13">Data e hora</text>
+<rect x="54" y="355" width="167" height="40" rx="5" fill="#29354b"/>
+<text x="70" y="381" font-size="14" fill="#fff">Enviar solicitação</text>
+<rect x="515" y="55" width="312" height="152" rx="10" fill="#fff" stroke="#606d82"/>
+<text x="537" y="87" font-size="16" font-weight="bold">Erro no campo Fim</text>
+<text x="537" y="117" font-size="14">O fim deve ocorrer após o início.</text>
+<text x="537" y="145" font-size="14">Os valores digitados permanecem.</text>
+<text x="537" y="177" font-size="14" font-weight="bold">Revisar horário</text>
+<rect x="515" y="226" width="312" height="194" rx="10" fill="#fff" stroke="#606d82"/>
+<text x="537" y="259" font-size="16" font-weight="bold">Criação sem confirmação</text>
+<text x="537" y="291" font-size="14">Confira se existe um pedido antes</text>
+<text x="537" y="313" font-size="14">de fazer outro envio.</text>
+<rect x="537" y="350" width="212" height="40" rx="5" fill="#29354b"/>
+<text x="551" y="375" font-size="14" fill="#fff">Conferir meus pedidos</text>
+</g>
+</svg>

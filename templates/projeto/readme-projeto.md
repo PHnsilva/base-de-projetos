@@ -1,23 +1,27 @@
 # Nome do projeto
 
-Descreva quem usa, que problema resolve e qual resultado entrega.
+Apresente em linguagem de quem chega ao repositório quem usa o projeto, o que ele faz e onde encontrar demonstração e documentação.
 
-## Estado, escopo e demonstração
+## Estado, demonstração e visão geral
 
-Informe fase, capacidades verificadas e fronteiras. Mostre a primeira jornada, uma demonstração ou a saída que o leitor pode reproduzir.
+Informe fase, capacidades verificadas, demonstração ou endereço e limitações de acesso. Aponte o documento de visão para objetivos, escopo, fronteiras e hipóteses.
 
-## Arquitetura e tecnologias
+## Funcionalidades, fluxos e perfis de acesso
 
-Identifique as unidades de execução, dados, integrações e responsabilidades. Aponte diagramas e principais decisões com suas razões.
+Apresente as jornadas principais. Resuma quem usa, quais operações realiza e quais condições valem. Aponte casos de uso, requisitos e matriz de acesso para detalhes.
 
-## Instalar e executar
+## Tecnologias e arquitetura
 
-Liste versões, serviços, variáveis de exemplo e permissões. Inclua os comandos verificados e o resultado esperado. Para sistemas com banco, explique inicialização e dados sintéticos.
+Informe a stack, o papel dos serviços e integrações e as decisões relevantes. Separe o que está em uso do que está proposto. Aponte diagramas e ADRs.
 
-## Verificar e operar
+## Execução, configuração e testes
 
-Apresente teste rápido, testes de integração, implantação, diagnóstico e recuperação conforme o escopo. Informe o que requer componente externo ou ambiente de teste.
+Registre pré-requisitos, configuração de exemplo, comando inicial, teste rápido e onde encontrar as instruções completas. Aponte implantação e diagnóstico quando fizerem parte da operação.
 
-## Navegação, contribuição e licença
+## Estrutura, documentação e contribuição
 
-Aponte requisitos, decisões, testes, issues, fluxo de contribuição e condições de reutilização. Identifique autoria e dependências de terceiros quando se aplicarem.
+Inclua caminhos para código, testes, documentação, issues, backlog e regras de contribuição. Informe o que cada destino resolve para quem lê.
+
+## Autoria e licença
+
+Indique autores ou mantenedores, licença aplicável e condições de uso de material externo.

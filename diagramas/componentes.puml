@@ -1,0 +1,8 @@
+@startuml
+left to right direction
+component "Aplicação de empréstimos" as Aplicacao
+interface "RepositorioEmprestimos" as Repositorio
+component "Adaptador SQL" as SQL
+Aplicacao ..> Repositorio : requer
+SQL ..|> Repositorio : realiza
+@enduml

@@ -1,0 +1,276 @@
+{
+  "owner": "PHnsilva",
+  "repository": "base-de-projetos",
+  "project": 13,
+  "sprints": [
+    {
+      "name": "S1",
+      "goal": "Descoberta e desenho",
+      "milestone": "MVP de reservas"
+    },
+    {
+      "name": "S2",
+      "goal": "Jornada principal",
+      "milestone": "MVP de reservas"
+    },
+    {
+      "name": "S3",
+      "goal": "Piloto do MVP",
+      "milestone": "MVP de reservas"
+    },
+    {
+      "name": "S4",
+      "goal": "Evolução",
+      "milestone": "Evolução de reservas"
+    }
+  ],
+  "options": {
+    "Prioridade": [
+      [
+        "Alta",
+        "RED"
+      ],
+      [
+        "Média",
+        "YELLOW"
+      ],
+      [
+        "Baixa",
+        "GRAY"
+      ]
+    ],
+    "Tamanho": [
+      [
+        "P",
+        "GREEN"
+      ],
+      [
+        "M",
+        "YELLOW"
+      ],
+      [
+        "L",
+        "PURPLE"
+      ]
+    ],
+    "Funcionalidade": [
+      [
+        "Planejamento",
+        "GRAY"
+      ],
+      [
+        "Solicitação",
+        "BLUE"
+      ],
+      [
+        "Decisão",
+        "PURPLE"
+      ],
+      [
+        "Histórico",
+        "GREEN"
+      ],
+      [
+        "Operação",
+        "ORANGE"
+      ],
+      [
+        "Agenda",
+        "PINK"
+      ],
+      [
+        "Ciclo de vida",
+        "YELLOW"
+      ],
+      [
+        "Notificações",
+        "BLUE"
+      ]
+    ]
+  },
+  "items": [
+    {
+      "issue": 10,
+      "sprint": "S1",
+      "type": "Task",
+      "nature": "Descoberta",
+      "feature": "Planejamento",
+      "priority": "Alta",
+      "size": "M",
+      "weight": 3,
+      "start": 0,
+      "end": 2,
+      "blockedBy": []
+    },
+    {
+      "issue": 11,
+      "sprint": "S1",
+      "type": "Task",
+      "nature": "Decisão técnica",
+      "feature": "Decisão",
+      "priority": "Alta",
+      "size": "P",
+      "weight": 2,
+      "start": 3,
+      "end": 5,
+      "blockedBy": [
+        10
+      ]
+    },
+    {
+      "issue": 9,
+      "sprint": "S1",
+      "type": "Task",
+      "nature": "Experiência",
+      "feature": "Solicitação",
+      "priority": "Média",
+      "size": "M",
+      "weight": 3,
+      "start": 3,
+      "end": 6,
+      "blockedBy": [
+        10
+      ]
+    },
+    {
+      "issue": 5,
+      "sprint": "S2",
+      "type": "Feature",
+      "nature": "Funcionalidade",
+      "feature": "Solicitação",
+      "priority": "Alta",
+      "size": "M",
+      "weight": 3,
+      "start": 0,
+      "end": 2,
+      "blockedBy": [
+        9,
+        11
+      ]
+    },
+    {
+      "issue": 4,
+      "sprint": "S2",
+      "type": "Bug",
+      "nature": "Defeito",
+      "feature": "Decisão",
+      "priority": "Alta",
+      "size": "L",
+      "weight": 5,
+      "start": 3,
+      "end": 6,
+      "blockedBy": [
+        5,
+        11
+      ]
+    },
+    {
+      "issue": 8,
+      "sprint": "S2",
+      "type": "Feature",
+      "nature": "Funcionalidade",
+      "feature": "Histórico",
+      "priority": "Média",
+      "size": "M",
+      "weight": 3,
+      "start": 3,
+      "end": 6,
+      "blockedBy": [
+        5,
+        11
+      ]
+    },
+    {
+      "issue": 3,
+      "sprint": "S3",
+      "type": "Task",
+      "nature": "Documentação",
+      "feature": "Decisão",
+      "priority": "Média",
+      "size": "P",
+      "weight": 2,
+      "start": 0,
+      "end": 3,
+      "blockedBy": [
+        11
+      ]
+    },
+    {
+      "issue": 12,
+      "sprint": "S3",
+      "type": "Task",
+      "nature": "Validação",
+      "feature": "Operação",
+      "priority": "Alta",
+      "size": "M",
+      "weight": 3,
+      "start": 0,
+      "end": 3,
+      "blockedBy": [
+        4,
+        8,
+        11
+      ]
+    },
+    {
+      "issue": 15,
+      "sprint": "S3",
+      "type": "Task",
+      "nature": "Operação",
+      "feature": "Operação",
+      "priority": "Alta",
+      "size": "M",
+      "weight": 3,
+      "start": 4,
+      "end": 6,
+      "blockedBy": [
+        12
+      ]
+    },
+    {
+      "issue": 2,
+      "sprint": "S4",
+      "type": "Task",
+      "nature": "Investigação",
+      "feature": "Agenda",
+      "priority": "Baixa",
+      "size": "M",
+      "weight": 3,
+      "start": 0,
+      "end": 3,
+      "blockedBy": [
+        15
+      ]
+    },
+    {
+      "issue": 13,
+      "sprint": "S4",
+      "type": "Task",
+      "nature": "Evolução",
+      "feature": "Ciclo de vida",
+      "priority": "Baixa",
+      "size": "M",
+      "weight": 3,
+      "start": 2,
+      "end": 5,
+      "blockedBy": [
+        15
+      ]
+    },
+    {
+      "issue": 14,
+      "sprint": "S4",
+      "type": "Task",
+      "nature": "Experimento",
+      "feature": "Notificações",
+      "priority": "Baixa",
+      "size": "L",
+      "weight": 5,
+      "start": 0,
+      "end": 6,
+      "blockedBy": [
+        15
+      ]
+    }
+  ]
+}

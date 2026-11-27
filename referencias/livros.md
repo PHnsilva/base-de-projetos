@@ -28,7 +28,7 @@ Cada entrada é uma referência para consulta ou uma proposta de resenha. Use um
 
 - [C4 Model](https://c4model.com/) para decomposição visual por público e nível.
 - [arc42](https://docs.arc42.org/) para selecionar seções de documentação arquitetural.
-- [SWEBOK v4](https://github.com/joaopauloaramuni/projeto-de-software/tree/main/SWEBOK) para mapear áreas de conhecimento e localizar bibliografia.
+- [SWEBOK v4](https://www.computer.org/education/bodies-of-knowledge/software-engineering) para mapear áreas de conhecimento e localizar bibliografia.
 - [Google SRE Books](https://sre.google/books/) para operação e confiabilidade, com recortes de leitura por risco e escala.
 - [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/) e [AWS Architecture Center](https://aws.amazon.com/architecture/) para padrões e exemplos aplicados. Registre as dependências do provedor ao adaptar uma solução.
 

@@ -1,0 +1,10 @@
+@startuml
+left to right direction
+package "emprestimo.web" as Web
+package "emprestimo.aplicacao" as Aplicacao
+package "emprestimo.dominio" as Dominio
+package "emprestimo.persistencia" as Persistencia
+Web ..> Aplicacao : usa
+Aplicacao ..> Dominio : usa
+Persistencia ..> Aplicacao : implementa contrato
+@enduml

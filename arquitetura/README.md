@@ -1,16 +1,20 @@
-# Arquitetura para projetos de software
+# Decisões de arquitetura por cenário
 
-Use os guias para elaborar hipóteses e compará-las com o problema, a equipe e a operação. Registre a decisão com [ADR](../templates/projeto/adr.md) quando a escolha tiver consequências duradouras.
+Comece com uma situação que tenha consequência observável. Uma decisão pode envolver interface, fronteira do backend, processamento assíncrono ou implantação. Analise essas dimensões separadamente antes de compor a solução.
 
-| Área | Onde começar | Critérios para discutir |
+| Cenário de decisão | Alternativas a comparar | Evidência que ajudaria a escolher |
 | --- | --- | --- |
-| Frontend | [Interfaces e composição](frontend.md) | UX, acessibilidade, latência, publicação e autonomia |
-| Backend | [Aplicações, integrações e serviços](backend-servicos.md) | Fronteiras, dados, consistência, operação e capacidade da equipe |
-| Diagramas | [Catálogo de diagramas](../diagramas/README.md) | Público, pergunta e nível de detalhe |
-| Evidência e leituras | [Catálogo](../referencias/README.md) | Contexto da fonte, método e condições para aplicar |
+| Portal simples com páginas públicas e um formulário | HTML renderizado no servidor, páginas estáticas com formulário ou interface cliente | Primeira jornada navegável, validação, envio e erro em dispositivo representativo. Veja [frontend](frontend.md) |
+| Área autenticada com edição frequente e estado compartilhado | Interface única, navegação de servidor com componentes interativos ou SPA | Provar se o fluxo precisa preservar estado local entre etapas e medir o custo da primeira carga. Veja [frontend](frontend.md) |
+| Duas operações disputam o mesmo recurso | Uma transação no backend, fila por recurso ou outra estratégia de coordenação | Repetir a disputa em ambiente real e verificar o resultado persistido. Veja [backend e serviços](backend-servicos.md) |
+| Tarefa lenta pode terminar depois da resposta web | Resposta síncrona, worker no mesmo domínio ou serviço autônomo | Medir tempo aceitável e provar recuperação após falha. Veja [backend e serviços](backend-servicos.md#quando-separar-a-execução) |
+| Aplicação sofre com fila de publicações entre equipes | Unidades compartilhadas com fronteiras de código ou unidades independentes | Histórico de dependências, responsáveis por incidentes e capacidade de publicar e reverter separadamente |
 
-## Da hipótese à decisão
+## Como fechar uma decisão
 
-1. Identifique limites do domínio, dependências e restrições da equipe.
-2. Compare opções pelos [atributos de qualidade](atributos-de-qualidade.md) que o projeto realmente precisa medir.
-3. Registre a decisão e os limites da evidência em um ADR. O [exemplo de reservas](../exemplos/reservas-de-recursos/README.md) mostra esse percurso.
+1. Registre jornada, contexto, restrições e [RAS do caso](../exemplos/reservas-de-recursos/especificacao.md#requisitos-arquiteturalmente-significativos-ras).
+2. Compare ao menos a solução mais simples disponível e a opção que trata a restrição. Identifique como dados, falhas e operação mudariam.
+3. Use critérios observáveis, como os [atributos de qualidade](atributos-de-qualidade.md). Rode uma prova curta quando a evidência estiver faltando.
+4. Registre escolha, alternativas, consequências e condição de reavaliação no [ADR](../templates/projeto/adr.md).
+
+O [ADR de reservas](../exemplos/reservas-de-recursos/adr-001-confirmacao.md) mostra uma decisão motivada pela concorrência. O [catálogo](../diagramas/README.md) ajuda a documentar a visão adequada.
