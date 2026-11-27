@@ -1,0 +1,55 @@
+name: Daily knowledge refinement
+
+on:
+  schedule:
+    - cron: '35 7 * * *' # 04:35 America/Sao_Paulo (UTC-3)
+    - cron: '35 17 * * *' # 14:35 contingency; same daily idempotency key
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish a useful daily PR (requires default branch and configured PAT)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: daily-knowledge-refinement
+  cancel-in-progress: false
+
+jobs:
+  refine:
+    if: >-
+      github.repository == 'PHnsilva/base-de-projetos' &&
+      github.event.repository.visibility == 'public' &&
+      (github.event_name == 'workflow_dispatch' || vars.KNOWLEDGE_REFINEMENT_ENABLED == 'true')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out trusted repository code
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6, verified 2026-11-27
+        with:
+          persist-credentials: false
+      - name: Use Node.js 24
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6, verified 2026-11-27
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Verify curator and repository links
+        run: |
+          node --test tools/knowledge/*.test.mjs
+          node tools/documentacao/validar.mjs
+      - name: Refine in read-only mode
+        if: github.event_name == 'workflow_dispatch' && !inputs.publish
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: timeout --signal=TERM 780s node tools/knowledge/run.mjs
+      - name: Publish a justified daily proposal
+        if: >-
+          (github.event_name == 'schedule' || inputs.publish) &&
+          github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        env:
+          KNOWLEDGE_SYNC_TOKEN: ${{ secrets.KNOWLEDGE_SYNC_TOKEN }}
+        run: timeout --signal=TERM 780s node tools/knowledge/run.mjs --publish

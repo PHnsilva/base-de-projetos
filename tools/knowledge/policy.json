@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "repository": "PHnsilva/base-de-projetos",
+  "owner": "PHnsilva",
+  "maxChanges": 3,
+  "maxNewPerWeek": 3,
+  "maxNewTotal": 60,
+  "maxNewPerTopic": 8,
+  "maxPendingDailyPRs": 14,
+  "maintenanceBatch": 16,
+  "discoveryRows": 15,
+  "topics": {
+    "software-engineering": ["software engineering"],
+    "architecture": ["software architecture", "architectural pattern", "microservice"],
+    "artificial-intelligence": ["artificial intelligence", "large language model", "machine learning"],
+    "ai-agents": ["ai agent", "llm agent", "multi-agent", "model context protocol"],
+    "distributed-systems": ["distributed system", "distributed computing", "consensus algorithm"],
+    "security": ["software security", "application security", "cybersecurity", "prompt injection"],
+    "software-quality": ["software testing", "software quality", "static analysis"],
+    "devops": ["devops", "continuous delivery", "continuous integration", "site reliability"],
+    "requirements": ["requirements engineering", "software requirement"],
+    "algorithms": ["algorithm design", "algorithm analysis", "graph algorithm"],
+    "design-patterns": ["design pattern", "software pattern"]
+  },
+  "evidenceTerms": ["systematic review", "systematic literature review", "mapping study", "survey", "benchmark", "replication"],
+  "excludedDois": [],
+  "protectedDois": [
+    "10.1145/361598.361623",
+    "10.1109/mc.1987.1663532",
+    "10.1007/978-3-642-30982-3_3",
+    "10.1145/336512.336537"
+  ]
+}
