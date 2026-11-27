@@ -48,4 +48,8 @@ O workflow `Knowledge refinement checks` executa os testes e validadores em Ubun
 
 O PR de implementação contém o resultado do CI correspondente ao commit publicado. As configurações manuais e os critérios de aceite do primeiro PR diário estão no [guia de ativação](knowledge-refinement.md#ativação-pelo-mantenedor-após-integrar-o-pr).
 
+**Execução real em nuvem confirmada:** [run 45932234001](https://github.com/PHnsilva/base-de-projetos/actions/runs/45932234001), commit de implementação `4c1867ce89024b7875db23f3a9071f2dc02838a6`, ambos os jobs concluídos com sucesso em 27/11/2026. Ubuntu 24.04.5 e Node 24.22.3; **57 testes, 57 aprovados, zero falhas**, catálogo válido e links locais válidos. Os logs do smoke check registraram: `Knowledge refinement 2026-11-27: 2 substantive changes; mode=dry-run`, um DOI conferido, quatro candidatos examinados e **nenhum warning**. Nenhum PR diário foi publicado. Isso confirma execução e acesso às fontes na infraestrutura hospedada, sem depender do Windows local; publicação por PAT e agendamento após integração continuam pendentes.
+
+A issue #18 e o PR #19 foram colocados em **In review** no [Project existente, view Evolução do acervo](https://github.com/users/PHnsilva/projects/13/views/8). Ambos estão atribuídos a PHnsilva. A interface foi usada porque o conector disponível não expõe operações de Projects; nenhuma permissão do quadro foi alterada.
+
 **Ainda não verificado nesta fase:** agendamento na main, publicação por KNOWLEDGE_SYNC_TOKEN, atribuição efetiva do primeiro PR diário no perfil, comportamento de quinze dias e consolidação real. Dependem da revisão/integração pelo mantenedor e da credencial configurada. Não houve merge, aprovação, fechamento de PRs ou ativação antecipada da rotina.

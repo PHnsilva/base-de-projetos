@@ -13,7 +13,12 @@ export const recordPath = id => CATALOG + createHash('sha256').update(id).digest
 export const isRecordPath = path => /^referencias\/catalogo\/[a-f0-9]{64}\.json$/.test(path);
 export function extractDois(value) {
   return [...new Set([...String(value).matchAll(/10\.\d{4,9}\/(?:[^\s<>"\[\]{}]|%[\da-f]{2})+/gi)]
-    .map(x => doi(x[0].replace(/[.,;:)]+$/, ''))).filter(Boolean))];
+    .map(x => {
+      let candidate = x[0].replace(/[.,;:]+$/, '');
+      // Strip Markdown link delimiters while preserving balanced DOI parentheses.
+      while (candidate.endsWith(')') && (candidate.match(/\)/g)?.length ?? 0) > (candidate.match(/\(/g)?.length ?? 0)) candidate = candidate.slice(0, -1);
+      return doi(candidate);
+    }).filter(Boolean))];
 }
 export function publicationDate(work, today) {
   const parts = (work.published ?? work.issued)?.['date-parts']?.[0];

@@ -24,6 +24,7 @@ test('normalizes DOI prefixes, case and percent encoding; rejects unsafe IDs', (
 });
 test('extracts and deduplicates DOI links in legacy Markdown', () => {
   assert.deepEqual(extractDois('[x](https://doi.org/10.1234/EXAMPLE). DOI: 10.1234/example'), ['10.1234/example']);
+  assert.deepEqual(extractDois('[x](https://doi.org/10.1234/example(1)).'), ['10.1234/example(1)']);
 });
 test('rejects absent provenance, authors, venue, publisher, source or member', () => {
   for (const field of ['author', 'container-title', 'publisher', 'source', 'member']) assert.equal(normalizeWork(work({ [field]: undefined }), today, policy), null);
