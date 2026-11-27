@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "origin": "existing",
+  "doi": "10.1007/978-3-642-30982-3_3",
+  "title": "Object Constraint Language (OCL): A Definitive Guide",
+  "authors": [
+    "Jordi Cabot",
+    "Martin Gogolla"
+  ],
+  "published": "2012",
+  "venue": "Lecture Notes in Computer Science",
+  "publisher": "Springer Berlin Heidelberg",
+  "type": "book-chapter",
+  "topics": [],
+  "provenance": {
+    "registry": "Crossref",
+    "member": "297",
+    "metadata": "https://api.crossref.org/works/10.1007%2F978-3-642-30982-3_3",
+    "resolver": "https://doi.org/10.1007/978-3-642-30982-3_3"
+  },
+  "locations": [
+    "REFERENCIAS.md",
+    "resenhas/object-constraint-language-definitive-guide/resenha_object_constraint_language.md"
+  ],
+  "protected": true,
+  "notices": [],
+  "relatedVersions": [],
+  "review": {
+    "status": "bibliographic-record",
+    "actions": [],
+    "limitation": "Registry metadata and title rules do not establish scientific quality, relevance in context, or absence of retractions."
+  }
+}

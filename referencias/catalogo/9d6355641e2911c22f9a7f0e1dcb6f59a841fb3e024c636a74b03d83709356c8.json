@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "origin": "existing",
+  "doi": "10.1109/mc.1987.1663532",
+  "title": "No Silver Bullet Essence and Accidents of Software Engineering",
+  "authors": [
+    "Brooks"
+  ],
+  "published": "1987-04",
+  "venue": "Computer",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "type": "journal-article",
+  "topics": [
+    "software-engineering"
+  ],
+  "provenance": {
+    "registry": "Crossref",
+    "member": "263",
+    "metadata": "https://api.crossref.org/works/10.1109%2Fmc.1987.1663532",
+    "resolver": "https://doi.org/10.1109/mc.1987.1663532"
+  },
+  "locations": [
+    "REFERENCIAS.md",
+    "resenhas/No-Silver-Bullet-Essence-and-Accidents-of-Software-Engineering/resenha_no_silver_bullet.md"
+  ],
+  "protected": true,
+  "notices": [],
+  "relatedVersions": [],
+  "review": {
+    "status": "bibliographic-record",
+    "actions": [],
+    "limitation": "Registry metadata and title rules do not establish scientific quality, relevance in context, or absence of retractions."
+  }
+}
