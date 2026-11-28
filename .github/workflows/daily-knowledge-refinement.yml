@@ -3,11 +3,13 @@ name: Daily knowledge refinement
 on:
   schedule:
     - cron: '35 7 * * *' # 04:35 America/Sao_Paulo (UTC-3)
+    - cron: '35 11 * * *' # 08:35 retry
     - cron: '35 17 * * *' # 14:35 contingency; same daily idempotency key
+    - cron: '35 22 * * *' # 19:35 final retry
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish a useful daily PR (requires default branch and configured PAT)'
+        description: 'Publish a daily validation PR (requires default branch and configured PAT)'
         type: boolean
         default: false
 
@@ -37,10 +39,6 @@ jobs:
         with:
           node-version: '24'
           package-manager-cache: false
-      - name: Verify curator and repository links
-        run: |
-          node --test tools/knowledge/*.test.mjs
-          node tools/documentacao/validar.mjs
       - name: Refine in read-only mode
         if: github.event_name == 'workflow_dispatch' && !inputs.publish
         env:

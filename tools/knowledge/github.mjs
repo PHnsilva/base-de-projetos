@@ -1,3 +1,4 @@
+import { validateDaily, dailyPR } from './daily.mjs';
 import { brazilDay, isRecordPath, recordPath, stable, validateRecord, extractDois } from './core.mjs';
 
 export const PREFIX = 'automation/knowledge/';
@@ -60,10 +61,11 @@ export class GitHub {
     const changes = [];
     const pending = await this.snapshot(prs, { phase: 'publish' });
     for (const file of compare.files) {
-      if (!isRecordPath(file.filename) || !['added', 'modified'].includes(file.status) || pending.paths.includes(file.filename)) throw new Error('Unsafe orphan branch diff');
+      if ((!isRecordPath(file.filename) && !/^reports\/daily\/\d{4}-\d{2}-\d{2}\.json$/.test(file.filename)) || !['added', 'modified'].includes(file.status) || pending.paths.includes(file.filename)) throw new Error('Unsafe orphan branch diff');
       const blob = await this.get('/git/blobs/' + file.sha, { phase: 'publish' });
-      const record = validateRecord(JSON.parse(Buffer.from(blob.content, 'base64').toString('utf8')), file.filename);
-      if (pending.dois.includes(record.doi) || record.locations.some(p => pending.paths.includes(p))) throw new Error('Orphan conflicts with a pending PR');
+      const parsed = JSON.parse(Buffer.from(blob.content, 'base64').toString('utf8'));
+      const record = parsed.kind === 'daily-validation' ? validateDaily(parsed, file.filename) : validateRecord(parsed, file.filename);
+      if (pending.dois.includes(record.doi) || (record.locations ?? []).some(p => pending.paths.includes(p))) throw new Error('Orphan conflicts with a pending PR');
       changes.push({ path: file.filename, record, before: null, reason: 'Recover a completed bibliographic change after interrupted publication; inspect the branch diff.' });
     }
     return { sha: ref.object.sha, changes };
@@ -75,12 +77,17 @@ export class GitHub {
     await this.assertUnchanged(pendingFingerprint, defaultBranch, baseSha);
     if (this.day() !== plan.day) throw new Error('Brasília date changed before PR publication');
     const branch = PREFIX + plan.day;
-    for (const change of plan.changes) validateRecord(change.record, change.path);
+    for (const change of plan.changes) {
+      if (change.record.kind === 'daily-validation') {
+        validateDaily(change.record, change.path);
+        if (change.record.day !== plan.day || (!recoveredSha && change.record.baseSha !== baseSha)) throw new Error('Daily report does not match publication base');
+      } else validateRecord(change.record, change.path);
+    }
     if (plan.changes.length > this.policy.maxChanges) throw new Error('Too many changes');
     if (!recoveredSha) {
       const baseCommit = await this.get('/git/commits/' + baseSha, { phase: 'publish' });
       const tree = await this.post('/git/trees', { base_tree: baseCommit.tree.sha,
-        tree: plan.changes.map(c => ({ path: recordPath(c.record.doi), mode: '100644', type: 'blob', content: stable(c.record) })) });
+        tree: plan.changes.map(c => ({ path: c.path, mode: '100644', type: 'blob', content: stable(c.record) })) });
       if (tree.sha === baseCommit.tree.sha) return null; // No empty commits.
       const commit = await this.post('/git/commits', { message: `chore(knowledge): refine references for ${plan.day} [automated]`,
         tree: tree.sha, parents: [baseSha], author: identity, committer: identity });
@@ -90,7 +97,7 @@ export class GitHub {
     }
     await this.assertUnchanged(pendingFingerprint, defaultBranch, baseSha);
     if (this.day() !== plan.day) throw new Error('Brasília date changed before PR publication');
-    return this.post('/pulls', { title: `chore(knowledge): refine references for ${plan.day} [automated]`,
+    return this.post('/pulls', { title: `chore: contribuição diária de ${plan.day} [automated]`,
       head: branch, base: defaultBranch, body: renderPR(plan), maintainer_can_modify: false });
   }
 }
@@ -98,8 +105,9 @@ export function fingerprint(prs) {
   return stable(prs.map(p => [p.number, p.head.sha, p.base.ref, p.base.sha]).sort((a, b) => a[0] - b[0]));
 }
 export function renderPR(plan) {
-  const entries = plan.changes.map(c => `- **${c.record.doi}** — ${c.reason}\n  - Metadata: ${c.record.provenance.metadata}\n  - DOI: ${c.record.provenance.resolver}\n  - Fields: ${changedFields(c.before, c.record).join(', ')}\n  - Topics (title rules): ${c.record.topics.join(', ') || 'unclassified'}\n  - Editorial notices: ${c.record.notices.map(n => `${n.type}: ${n.evidence}`).join('; ') || 'none returned by Crossref; absence is not proof'}\n  - Human actions: ${c.record.review.actions.join(', ') || 'verify metadata and read before endorsement'}`).join('\n');
-  return `Automated, deterministic bibliographic refinement for ${plan.day} (America/Sao_Paulo). No AI or scientific interpretation was used.\n\n${entries}\n\nValidation: exact DOI lookup; required authors, date, venue, publisher and Crossref member; reverse editorial-update query; schema, quotas and pending-PR conflict checks.\n\nSearch warnings: ${plan.warnings.length ? plan.warnings.join(' | ') : 'none'}.\n\nReview the sources and diff. Metadata does not establish methodological quality, peer review, completeness of retraction coverage, or contextual suitability. Authored reviews and classics are preserved.\n\nThe maintainer alone reviews and merges. Consolidate with other daily PRs during the fortnightly review; this automation never merges, approves or closes PRs.\n\nSee [operating guide](https://github.com/PHnsilva/base-de-projetos/blob/${PREFIX + plan.day}/docs/knowledge-refinement.md).`;
+  const audit = plan.changes.find(c => c.record.kind === 'daily-validation');
+  const entries = plan.changes.filter(c => c.record.kind !== 'daily-validation').map(c => `- **${c.record.doi}** — ${c.reason}\n  - Metadata: ${c.record.provenance.metadata}\n  - DOI: ${c.record.provenance.resolver}\n  - Fields: ${changedFields(c.before, c.record).join(', ')}\n  - Topics (title rules): ${c.record.topics.join(', ') || 'unclassified'}\n  - Editorial notices: ${c.record.notices.map(n => `${n.type}: ${n.evidence}`).join('; ') || 'none returned by Crossref; absence is not proof'}\n  - Human actions: ${c.record.review.actions.join(', ') || 'verify metadata and read before endorsement'}`).join('\n');
+  return (audit ? dailyPR(audit) + '\n\n' : '') + `Automated, deterministic bibliographic refinement for ${plan.day} (America/Sao_Paulo). No AI or scientific interpretation was used.\n\n${entries}\n\nValidation: exact DOI lookup; required authors, date, venue, publisher and Crossref member; reverse editorial-update query; schema, quotas and pending-PR conflict checks.\n\nSearch warnings: ${plan.warnings.length ? plan.warnings.join(' | ') : 'none'}.\n\nReview the sources and diff. Metadata does not establish methodological quality, peer review, completeness of retraction coverage, or contextual suitability. Authored reviews and classics are preserved.\n\nThe maintainer alone reviews and merges. Consolidate with other daily PRs during the fortnightly review; this automation never merges, approves or closes PRs.\n\nSee [operating guide](https://github.com/PHnsilva/base-de-projetos/blob/${PREFIX + plan.day}/docs/knowledge-refinement.md).`;
 }
 export function changedFields(before, after) {
   return Object.keys(after).filter(key => stable(before?.[key]) !== stable(after[key]));

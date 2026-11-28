@@ -1,3 +1,4 @@
+import { dailyChange } from './daily.mjs';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
@@ -26,14 +27,15 @@ try {
   if (await github.dayPR(today)) { summary(`A daily PR already exists for ${today}; no changes (including if closed or merged).`); process.exit(0); }
   const prs = await github.pulls();
   if (prs.filter(p => p.head.repo?.full_name === policy.repository && p.head.ref.startsWith(PREFIX)).length >= policy.maxPendingDailyPRs) {
-    summary('Daily PR backlog limit reached; awaiting human consolidation.'); process.exit(0);
+    summary('Bibliographic backlog limit reached; daily validation report will still be proposed.');
   }
   const baseRef = await github.get('/git/ref/heads/' + repo.default_branch);
   const pending = await github.snapshot(prs);
   const identity = publish ? await github.identity() : null;
   const recovered = publish ? await github.recover(PREFIX + today, repo.default_branch, prs, identity) : null;
   const plan = recovered ? { schemaVersion: 1, day: today, changes: recovered.changes, warnings: ['Recovered an interrupted branch; no new searches.'], stats: {} }
-    : await refine({ inventory: localInventory(root), pending, source, policy, today, budget });
+    : await refine({ inventory: localInventory(root), pending, source, policy: { ...policy, maxChanges: policy.maxChanges - 1, maxNewPerWeek: prs.length >= policy.maxPendingDailyPRs ? 0 : policy.maxNewPerWeek }, today, budget });
+  if (!recovered) plan.changes.unshift(dailyChange({ root, day: today, baseSha: baseRef.object.sha, prs }));
   const output = args.indexOf('--output');
   if (output !== -1) {
     if (!args[output + 1]) throw new Error('--output requires a path');

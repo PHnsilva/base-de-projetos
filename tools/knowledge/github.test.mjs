@@ -125,3 +125,25 @@ test('workflow uses public standard runner, pinned actions, no secrets on PR CI 
   assert.doesNotMatch(ci, /secrets\.|pull_request_target|contents: write|upload-artifact/);
   for (const match of (daily + ci).matchAll(/uses: (\S+)/g)) assert.match(match[1], /@[a-f0-9]{40}$/);
 });
+
+test('daily evidence publishes without bibliographic changes and rejects a different date or base', async () => {
+  const { dailyChange } = await import('./daily.mjs');
+  const audit = dailyChange({ root: '.', day, baseSha: 'a'.repeat(40), prs: [], runner: (cmd) => cmd === 'git' ? 'tools/knowledge/core.test.mjs\n' : 'passed' });
+  const h = harness();
+  await h.github.publish({ day, changes: [audit], warnings: [] }, { ...context, baseSha: 'BASE', recoveredSha: 'ORPHAN' });
+  const pr = h.calls.find(c => c[0] === 'POST' && c[1].endsWith('/pulls'))[2];
+  assert.match(pr.body, /Validação diária/);
+  await assert.rejects(harness().github.publish({ day, changes: [audit], warnings: [] }, context), /publication base/);
+  await assert.rejects(harness().github.publish({ day: '2026-11-25', changes: [audit], warnings: [] }, context), /date changed/);
+});
+
+test('failed checks are recorded honestly and daily paths cannot overwrite other files', async () => {
+  const { dailyChange, validateDaily } = await import('./daily.mjs');
+  const audit = dailyChange({ root: '.', day, baseSha: 'a'.repeat(40), prs: [], runner: (cmd, args) => {
+    if (args[0] === 'ls-files') return 'test.mjs\n';
+    const error = new Error('failed'); error.status = 1; error.stdout = 'Broken link'; throw error;
+  } });
+  assert.ok(audit.record.checks.every(c => c.status === 'failed'));
+  assert.match(audit.record.nextAction, /Corrigir/);
+  assert.throws(() => validateDaily(audit.record, 'AGENTS.md'), /Invalid/);
+});
