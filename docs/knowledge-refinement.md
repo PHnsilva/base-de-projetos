@@ -1,4 +1,16 @@
-# Refinamento contínuo do conhecimento
+# Contribuição diária e refinamento do conhecimento
+
+## Atualização de 28/11/2026
+
+A cada data de Brasília, a rotina propõe **um PR com relatório de validação executada**, mesmo sem novidade bibliográfica. `reports/daily/AAAA-MM-DD.json` registra o SHA da main, execução do Actions, testes do projeto, validação de links e catálogo, verificação de diff, PRs pendentes e próxima ação. Falhas são registradas como falhas, sem declarar aprovação. Os arquivos são independentes por dia e podem ser revisados em lote; não há merge automático.
+
+A consulta Crossref continua como complemento de até duas fichas por PR. A indisponibilidade da fonte não impede o relatório local. O antigo limite de 14 PRs deixa de bloquear o relatório diário; ao atingir esse volume, novas descobertas bibliográficas são suspensas. O acervo de relatórios cresce diariamente e pode ser consolidado pelo mantenedor.
+
+Tentativas: **04h35, 08h35, 14h35 e 19h35 de Brasília**. A primeira publicação reserva a data; as demais não duplicam PRs, inclusive fechados ou integrados. Token inválido, indisponibilidade do GitHub, mudança da base durante publicação ou falha do runner ainda podem impedir a entrega. A rotina não promete melhoria inédita de código diariamente: a contribuição mínima é a evidência real das verificações.
+
+Esta atualização substitui os trechos históricos abaixo que dizem não registrar verificações, limitar a 14 relatórios ou executar somente duas vezes por dia. Quatro jobs de até 15 minutos equivalem a um teto planejado de 60 minutos/dia; execuções que encontram o PR do dia terminam cedo. A ativação continua dependendo de integrar este PR na main.
+
+
 
 Entrega da [issue #18](https://github.com/PHnsilva/base-de-projetos/issues/18). A rotina propõe mudanças bibliográficas verificáveis em PRs e preserva a revisão, aprovação e integração exclusivamente com o mantenedor. Executa em GitHub Actions com o computador desligado, sem ChatGPT/Codex abertos e sem IA durante as execuções.
 

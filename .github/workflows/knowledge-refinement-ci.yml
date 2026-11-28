@@ -4,6 +4,7 @@ on:
     paths:
       - 'tools/knowledge/**'
       - 'referencias/catalogo/**'
+      - 'reports/daily/**'
       - 'docs/knowledge-refinement*'
       - '.github/workflows/*knowledge*'
 permissions:
